@@ -7,409 +7,11 @@
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <title>Cek Harga — Sukses Crown Toys</title>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
-  <!-- <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --yellow:   #FFD23F;
-      --orange:   #FF6B35;
-      --red:      #EF233C;
-      --blue:     #3A86FF;
-      --blue-dk:  #2563EB;
-      --green:    #06D6A0;
-      --green-dk: #059669;
-      --white:    #FFFFFF;
-      --cream:    #FFFBF0;
-      --gray-l:   #F3F4F6;
-      --gray:     #6B7280;
-      --dark:     #1F2937;
-      --safe-b:   env(safe-area-inset-bottom, 0px);
-      --font-d:   'Fredoka One', cursive;
-      --font-b:   'Nunito', sans-serif;
-    }
-
-    html { height: 100%; overscroll-behavior: none; }
-
-    body {
-      background: var(--cream);
-      font-family: var(--font-b);
-      min-height: 100%;
-      display: flex; flex-direction: column; align-items: center;
-      overflow-x: hidden;
-      padding-bottom: calc(16px + var(--safe-b));
-    }
-
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: radial-gradient(circle, #FFD23F44 2px, transparent 2px);
-      background-size: 28px 28px;
-      pointer-events: none; z-index: 0;
-    }
-
-    .wrap { width: 100%; max-width: 1100px; padding: 0 14px; position: relative; z-index: 10; }
-
-    /* ── HEADER ── */
-    header { width: 100%; max-width: 1100px; padding: 14px 14px 0; position: relative; z-index: 10; }
-
-    .header-banner {
-      background: var(--blue); border-radius: 20px 20px 0 0;
-      padding: 14px 20px 12px; position: relative; overflow: hidden;
-      box-shadow: 0 5px 0 var(--blue-dk);
-      display: flex; align-items: center; gap: 14px;
-    }
-    .header-banner::before {
-      content: '🎮 🧸 🚀 🎯 🎪 🏎️ 🎠 🎲';
-      position: absolute; bottom: -6px; left: -10px;
-      font-size: 18px; opacity: 0.1; letter-spacing: 4px; white-space: nowrap;
-    }
-    .hdr-emoji { font-size: 32px; animation: bounce 2.2s ease-in-out infinite; flex-shrink: 0; }
-    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
-    .hdr-text {}
-    .store-title    { font-family: var(--font-d); font-size: clamp(20px, 4vw, 28px); color: var(--white); line-height: 1; }
-    .store-subtitle { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.7); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 3px; }
-
-    /* mode pill in header */
-    .mode-pill {
-      margin-left: auto; flex-shrink: 0;
-      display: flex; align-items: center;
-      background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.35);
-      border-radius: 100px; padding: 3px;
-      gap: 2px;
-    }
-    .mode-pill-btn {
-      background: none; border: none; cursor: pointer;
-      font-family: var(--font-d); font-size: 12px; color: rgba(255,255,255,0.6);
-      padding: 5px 12px; border-radius: 100px;
-      transition: all 0.18s; white-space: nowrap;
-      -webkit-tap-highlight-color: transparent;
-      display: flex; align-items: center; gap: 5px;
-    }
-    .mode-pill-btn.active {
-      background: var(--white); color: var(--blue-dk);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    }
-
-    .color-strip { display: flex; height: 7px; border-radius: 0 0 8px 8px; overflow: hidden; }
-    .color-strip span { flex: 1; }
-    .cs1{background:#EF233C;}.cs2{background:#FF6B35;}.cs3{background:#FFD23F;}
-    .cs4{background:#06D6A0;}.cs5{background:#3A86FF;}.cs6{background:#9B5DE5;}.cs7{background:#F72585;}
-
-    /* ── MAIN LAYOUT ── */
-    /* Mobile: stacked. Desktop: side-by-side */
-    .main-layout {
-      width: 100%; max-width: 1100px;
-      padding: 14px 14px 0;
-      position: relative; z-index: 10;
-      display: flex; gap: 16px; flex-direction: column;
-    }
-
-    @media (min-width: 820px) {
-      .main-layout { flex-direction: row; align-items: flex-start; }
-      .col-left    { flex: 1; min-width: 0; }
-      .col-right   { width: 380px; flex-shrink: 0; position: sticky; top: 14px; }
-    }
-
-    /* ── CARD BASE ── */
-    .card {
-      background: var(--white);
-      border: 2.5px solid var(--dark);
-      border-radius: 20px;
-      box-shadow: 5px 5px 0 var(--dark);
-      overflow: hidden;
-    }
-
-    @keyframes popIn  { from{opacity:0;transform:scale(0.9) translateY(8px)} to{opacity:1;transform:scale(1) translateY(0)} }
-    @keyframes slideIn{ from{opacity:0;transform:translateX(-8px)} to{opacity:1;transform:translateX(0)} }
-    @keyframes flashGreen { 0%,100%{background:var(--white)} 30%{background:#D1FAF0} }
-    @keyframes spin   { to{transform:rotate(360deg)} }
-
-    /* ── SCAN MODE INDICATOR ── */
-    .scan-mode-bar {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 18px 10px;
-      border-bottom: 2px dashed #E5E7EB;
-      gap: 10px;
-    }
-    .scan-mode-label {
-      font-family: var(--font-d); font-size: 14px;
-      display: flex; align-items: center; gap: 7px;
-    }
-    .scan-mode-dot {
-      width: 9px; height: 9px; border-radius: 50%;
-      background: var(--green); box-shadow: 0 0 0 3px rgba(6,214,160,0.25);
-      animation: pulse-dot 1.5s ease-in-out infinite;
-      flex-shrink: 0;
-    }
-    .scan-mode-dot.manual { background: var(--orange); box-shadow: 0 0 0 3px rgba(255,107,53,0.25); }
-    @keyframes pulse-dot { 0%,100%{transform:scale(1)} 50%{transform:scale(1.4)} }
-
-    /* Desktop mode toggle inside card (hidden on mobile — uses header pill) */
-    .inline-mode-toggle { display: none; }
-    @media (min-width: 820px) {
-      .inline-mode-toggle {
-        display: flex; align-items: center;
-        background: var(--gray-l); border: 2px solid #E5E7EB;
-        border-radius: 100px; padding: 3px; gap: 2px;
-      }
-      .imt-btn {
-        background: none; border: none; cursor: pointer;
-        font-family: var(--font-d); font-size: 12px; color: var(--gray);
-        padding: 5px 12px; border-radius: 100px; transition: all 0.15s; white-space: nowrap;
-        display: flex; align-items: center; gap: 5px;
-        -webkit-tap-highlight-color: transparent;
-      }
-      .imt-btn.active { background: var(--dark); color: var(--white); box-shadow: 2px 2px 0 rgba(0,0,0,0.2); }
-    }
-
-    /* ── SCANNER BODY ── */
-    .scanner-body { padding: 14px 18px 16px; }
-
-    /* scan visual — only show in scan mode */
-    .scan-visual {
-      height: 64px; background: var(--gray-l);
-      border: 2px dashed #D1D5DB; border-radius: 14px;
-      position: relative; overflow: hidden; margin-bottom: 12px;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      transition: all 0.2s;
-    }
-    .scan-visual.hidden { display: none; }
-    .scan-icon      { font-size: 22px; }
-    .scan-ready-txt { font-family: var(--font-d); font-size: 13px; color: var(--gray); }
-    .scan-line {
-      position: absolute; top: 0; left: -3px; width: 3px; height: 100%;
-      background: linear-gradient(180deg, transparent, var(--orange), transparent);
-      animation: scanMove 2.2s ease-in-out infinite; border-radius: 2px;
-    }
-    .scan-visual.paused .scan-line { animation-play-state: paused; opacity: 0; }
-    @keyframes scanMove { 0%{left:-3px;opacity:0} 8%{opacity:1} 92%{opacity:1} 100%{left:100%;opacity:0} }
-
-    .input-row { display: flex; gap: 8px; }
-
-    .kode-input {
-      flex: 1; background: var(--gray-l); border: 2px solid #E5E7EB; border-radius: 14px;
-      padding: 14px 16px;
-      font-family: var(--font-b); font-weight: 800; color: var(--dark);
-      font-size: max(16px, 1em);
-      outline: none; transition: all 0.18s;
-      text-transform: uppercase; letter-spacing: 0.06em;
-    }
-    .kode-input::placeholder { font-size: 13px; font-weight: 600; color: #9CA3AF; text-transform: none; letter-spacing: 0; }
-    .kode-input:focus { border-color: var(--blue); background: #EFF6FF; box-shadow: 0 0 0 3px rgba(58,134,255,0.18); }
-    /* manual mode: bigger, more prominent */
-    .kode-input.manual-mode { border-color: var(--orange); background: #FFF7F0; }
-    .kode-input.manual-mode:focus { border-color: var(--orange); background: #FFF7F0; box-shadow: 0 0 0 3px rgba(255,107,53,0.18); }
-
-    .btn-tambah {
-      background: var(--orange); color: var(--white); border: 2.5px solid var(--dark);
-      border-radius: 14px; padding: 14px 16px; font-family: var(--font-d); font-size: 15px;
-      cursor: pointer; white-space: nowrap; box-shadow: 4px 4px 0 var(--dark);
-      min-height: 52px; -webkit-tap-highlight-color: transparent; transition: all 0.13s;
-    }
-    .btn-tambah:active { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--dark); }
-
-    .hint-text {
-      margin-top: 9px; font-size: 11px; font-weight: 700; color: var(--gray); text-align: center;
-      transition: all 0.2s;
-    }
-
-    /* ── LAST SCANNED TOAST ── */
-    .last-scan-toast {
-      margin: 0 18px 14px;
-      background: #D1FAF0; border: 2px solid var(--green-dk);
-      border-radius: 14px; padding: 10px 14px;
-      display: none; align-items: center; gap: 10px;
-      animation: popIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
-    }
-    .last-scan-toast.show { display: flex; }
-    .lst-emoji { font-size: 22px; flex-shrink: 0; }
-    .lst-info  { flex: 1; min-width: 0; }
-    .lst-nama  { font-family: var(--font-d); font-size: 13px; color: var(--dark);
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .lst-harga { font-size: 11px; font-weight: 800; color: var(--green-dk); }
-    .lst-qty-badge {
-      background: var(--green); color: var(--white);
-      font-family: var(--font-d); font-size: 13px;
-      padding: 4px 10px; border-radius: 100px;
-      border: 2px solid var(--dark); white-space: nowrap; flex-shrink: 0;
-      box-shadow: 2px 2px 0 var(--dark);
-    }
-
-    /* ── ERROR TOAST ── */
-    .error-toast {
-      margin: 0 18px 14px;
-      background: #FEE2E2; border: 2px solid var(--red);
-      border-radius: 14px; padding: 10px 14px;
-      display: none; align-items: center; gap: 10px;
-      animation: popIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
-    }
-    .error-toast.show { display: flex; }
-    .et-emoji { font-size: 22px; flex-shrink: 0; }
-    .et-msg   { font-family: var(--font-d); font-size: 13px; color: var(--red); }
-
-    /* ── KERANJANG CARD ── */
-    .keranjang-header {
-      background: var(--green); padding: 14px 18px;
-      display: flex; align-items: center; justify-content: space-between;
-      border-bottom: 2.5px solid var(--dark);
-    }
-    .keranjang-title { font-family: var(--font-d); font-size: 17px; color: var(--white); display: flex; align-items: center; gap: 7px; }
-    .k-count { background: rgba(255,255,255,0.3); border-radius: 100px; padding: 1px 9px; font-size: 14px; }
-    .btn-clear-k {
-      background: rgba(255,255,255,0.2); color: var(--white);
-      border: 2px solid rgba(255,255,255,0.45); border-radius: 10px;
-      padding: 5px 11px; font-family: var(--font-d); font-size: 12px;
-      cursor: pointer; -webkit-tap-highlight-color: transparent;
-    }
-    .btn-clear-k:active { background: rgba(255,255,255,0.4); }
-
-    /* empty */
-    .cart-empty { padding: 36px 20px; text-align: center; }
-    .cart-empty-emoji { font-size: 44px; margin-bottom: 8px; }
-    .cart-empty-text  { font-family: var(--font-d); font-size: 16px; color: var(--gray); margin-bottom: 4px; }
-    .cart-empty-sub   { font-size: 11px; font-weight: 700; color: #9CA3AF; }
-
-    /* items */
-    .cart-list {}
-    .cart-item {
-      display: grid;
-      grid-template-columns: 30px 1fr auto auto;
-      align-items: center; gap: 9px;
-      padding: 11px 16px;
-      border-bottom: 2px dashed #E5E7EB;
-      transition: background 0.2s;
-    }
-    .cart-item:last-child { border-bottom: none; }
-    .cart-item.flash { animation: flashGreen 0.5s ease; }
-
-    .ci-emoji { font-size: 20px; text-align: center; }
-    .ci-info  { min-width: 0; }
-    .ci-nama  { font-family: var(--font-d); font-size: 13px; color: var(--dark);
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2; }
-    .ci-sub   { font-size: 10px; font-weight: 700; color: var(--gray); margin-top: 1px; }
-
-    .qty-ctrl { display: flex; align-items: center; gap: 3px; flex-shrink: 0; }
-    .qty-btn {
-      width: 30px; height: 30px; border-radius: 8px;
-      border: 2px solid var(--dark); background: var(--gray-l);
-      font-family: var(--font-d); font-size: 16px; color: var(--dark);
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      box-shadow: 2px 2px 0 var(--dark); transition: all 0.1s;
-      -webkit-tap-highlight-color: transparent; position: relative;
-    }
-    .qty-btn::after { content:''; position:absolute; inset:-6px; }
-    .qty-btn:active { transform:translate(1px,1px); box-shadow:0 0 0 var(--dark); }
-    .qty-btn.minus  { background: #FEE2E2; }
-    .qty-btn.minus:active { background: #fca5a5; }
-    .qty-input {
-      font-family: var(--font-d); font-size: 15px; color: var(--dark);
-      width: 42px; text-align: center;
-      background: var(--white);
-      border: 2px solid #D1D5DB; border-radius: 8px;
-      padding: 3px 4px;
-      outline: none;
-      -moz-appearance: textfield;
-      transition: border-color 0.15s, box-shadow 0.15s;
-    }
-    .qty-input::-webkit-inner-spin-button,
-    .qty-input::-webkit-outer-spin-button { -webkit-appearance: none; }
-    .qty-input:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px rgba(58,134,255,0.18);
-    }
-    .qty-input.invalid {
-      border-color: var(--red);
-      background: #FEE2E2;
-    }
-
-    .ci-harga-col { text-align: right; flex-shrink: 0; }
-    .ci-harga     { font-family: var(--font-d); font-size: 13px; color: var(--blue); white-space: nowrap; }
-    .ci-subtotal  { font-size: 10px; font-weight: 700; color: var(--gray); white-space: nowrap; }
-
-    /* total footer */
-    .cart-footer { border-top: 2.5px solid var(--dark); padding: 14px 18px 16px; background: #FFFEF5; }
-    .total-row { display: flex; justify-content: space-between; align-items: center; padding: 3px 0; }
-    .total-lbl { font-size: 12px; font-weight: 700; color: var(--gray); }
-    .total-val { font-size: 13px; font-weight: 800; color: var(--dark); }
-    .total-grand { border-top: 2px dashed #D1D5DB; margin-top: 8px; padding-top: 10px; }
-    .total-grand .total-lbl { font-family: var(--font-d); font-size: 16px; color: var(--dark); }
-    .total-grand .total-val { font-family: var(--font-d); font-size: clamp(20px, 4vw, 26px); color: var(--green-dk); }
-    .btn-reset {
-      width: 100%; margin-top: 12px;
-      background: var(--gray-l); color: var(--gray);
-      border: 2px solid #D1D5DB; border-radius: 12px;
-      padding: 11px; font-family: var(--font-d); font-size: 14px;
-      cursor: pointer; box-shadow: 3px 3px 0 #D1D5DB;
-      -webkit-tap-highlight-color: transparent; min-height: 46px;
-    }
-    .btn-reset:active { background: #FEE2E2; color: var(--red); border-color: var(--red); }
-
-    /* ── MOBILE BOTTOM NAV (< 820px) ── */
-    .bottom-nav {
-      display: none;
-      position: fixed; bottom: 0; left: 0; right: 0;
-      height: calc(62px + var(--safe-b));
-      padding-bottom: var(--safe-b);
-      background: var(--white); border-top: 3px solid var(--dark);
-      z-index: 100; box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
-    }
-    .bottom-nav-inner { display: flex; height: 62px; }
-
-    .nav-btn {
-      flex: 1; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 2px;
-      background: none; border: none; font-family: var(--font-b);
-      font-size: 10px; font-weight: 800; color: var(--gray);
-      cursor: pointer; transition: all 0.15s; position: relative;
-      padding: 6px 4px 4px; -webkit-tap-highlight-color: transparent;
-      letter-spacing: 0.04em; text-transform: uppercase;
-    }
-    .nav-btn .nav-icon { font-size: 22px; line-height: 1; transition: transform 0.2s; }
-    .nav-btn.active { color: var(--blue); }
-    .nav-btn.active .nav-icon { transform: scale(1.15); }
-    .nav-btn.active::before {
-      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-      width: 38px; height: 3px; background: var(--blue); border-radius: 0 0 4px 4px;
-    }
-    .nav-badge {
-      position: absolute; top: 4px; right: calc(50% - 24px);
-      background: var(--red); color: var(--white);
-      font-size: 10px; font-weight: 900; min-width: 17px; height: 17px;
-      border-radius: 9px; padding: 0 3px;
-      display: none; align-items: center; justify-content: center;
-      border: 2px solid var(--white);
-    }
-    .nav-badge.show { display: flex; animation: popIn 0.3s cubic-bezier(0.34,1.56,0.64,1); }
-
-    /* On mobile: only show active panel */
-    @media (max-width: 819px) {
-      .bottom-nav { display: block; }
-      body { padding-bottom: calc(62px + var(--safe-b) + 10px); }
-      .col-left, .col-right { width: 100%; }
-      .col-left.mob-hidden,
-      .col-right.mob-hidden { display: none; }
-      /* hide inline mode toggle, show header pill */
-      .inline-mode-toggle { display: none !important; }
-    }
-
-    @media (min-width: 820px) {
-      /* always show both cols on desktop */
-      .col-left.mob-hidden,
-      .col-right.mob-hidden { display: block !important; }
-      /* hide header mode pill on desktop (use inline toggle) */
-      .mode-pill { display: none !important; }
-    }
-
-    footer { width:100%; max-width:1100px; padding: 10px 14px 0; position:relative; z-index:10; font-size:11px; font-weight:700; color:var(--gray); text-align:center; }
-
-    @media (min-width: 820px) and (hover: hover) {
-      .btn-tambah:hover  { transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--dark); }
-      .qty-btn:hover     { background:var(--yellow); transform:translate(-1px,-1px); }
-      .qty-btn.minus:hover { background:var(--red); color:var(--white); }
-    }
-  </style> -->
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ═══════════════════════════════════════
+   RESET & ROOT
+═══════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
   --yellow:   #FFD23F;
@@ -419,1302 +21,1077 @@
   --blue-dk:  #2563EB;
   --green:    #06D6A0;
   --green-dk: #059669;
+  --purple:   #9B5DE5;
+  --purple-dk:#7C3AED;
   --white:    #FFFFFF;
   --cream:    #FFFBF0;
+  --gray-xl:  #F9FAFB;
   --gray-l:   #F3F4F6;
+  --gray-m:   #E5E7EB;
   --gray:     #6B7280;
+  --gray-dk:  #374151;
   --dark:     #1F2937;
+  --nav-h:    62px;
   --safe-b:   env(safe-area-inset-bottom, 0px);
   --font-d:   'Fredoka One', cursive;
   --font-b:   'Nunito', sans-serif;
+  --radius:   18px;
+  --shadow:   5px 5px 0 var(--dark);
+  --shadow-s: 3px 3px 0 var(--dark);
 }
 
-html {
-  height: 100%;
-  overscroll-behavior: none;
-  -webkit-text-size-adjust: 100%;
-}
+html { height: 100%; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
 
 body {
   background: var(--cream);
   font-family: var(--font-b);
   min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   overflow-x: hidden;
-  padding-bottom: calc(70px + var(--safe-b));
 }
 
+/* Dot pattern bg */
 body::before {
   content: '';
-  position: fixed;
-  inset: 0;
-  background-image: radial-gradient(circle, #FFD23F44 2px, transparent 2px);
+  position: fixed; inset: 0;
+  background-image: radial-gradient(circle, #FFD23F33 2px, transparent 2px);
   background-size: 28px 28px;
-  pointer-events: none;
-  z-index: 0;
+  pointer-events: none; z-index: 0;
 }
 
-.wrap {
-  width: 100%;
-  max-width: 1100px;
-  padding: 0 14px;
-  position: relative;
-  z-index: 10;
-}
+button, input, select { font-family: var(--font-b); touch-action: manipulation; }
 
-/* ── HEADER ── */
-header {
-  width: 100%;
-  max-width: 1100px;
-  padding: 14px 14px 0;
-  position: relative;
-  z-index: 10;
-}
+/* ═══════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════ */
+@keyframes bounce    { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+@keyframes popIn     { from{opacity:0;transform:scale(0.88) translateY(10px)} to{opacity:1;transform:scale(1) translateY(0)} }
+@keyframes fadeIn    { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:translateY(0)} }
+@keyframes flashGreen{ 0%,100%{background:var(--white)} 35%{background:#D1FAF0} }
+@keyframes spin      { to{transform:rotate(360deg)} }
+@keyframes pulse-dot { 0%,100%{transform:scale(1)} 50%{transform:scale(1.45)} }
+@keyframes scanMove  { 0%{left:-4px;opacity:0} 8%{opacity:1} 92%{opacity:1} 100%{left:100%;opacity:0} }
+@keyframes slideDown { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
 
-.header-banner {
-  background: var(--blue);
-  border-radius: 20px 20px 0 0;
-  padding: 14px 20px 12px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 5px 0 var(--blue-dk);
+/* ═══════════════════════════════════════
+   DESKTOP LAYOUT  (≥ 820px)
+   Three columns: sidebar-left | main | sidebar-right
+═══════════════════════════════════════ */
+.app-shell {
   display: flex;
-  align-items: center;
-  gap: 14px;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
 }
 
-.header-banner::before {
-  content: '🎮 🧸 🚀 🎯 🎪 🏎️ 🎠 🎲';
-  position: absolute;
-  bottom: -6px;
-  left: -10px;
-  font-size: 18px;
-  opacity: 0.1;
-  letter-spacing: 4px;
-  white-space: nowrap;
+/* ── Header ── */
+.app-header {
+  background: var(--blue);
+  box-shadow: 0 4px 0 var(--blue-dk);
+  position: sticky; top: 0; z-index: 200;
+}
+
+.header-inner {
+  max-width: 1400px; margin: 0 auto;
+  padding: 0 20px;
+  display: flex; align-items: center; gap: 16px;
+  height: 64px;
+}
+
+.hdr-brand {
+  display: flex; align-items: center; gap: 12px; flex-shrink: 0;
 }
 
 .hdr-emoji {
-  font-size: 32px;
-  animation: bounce 2.2s ease-in-out infinite;
-  flex-shrink: 0;
+  font-size: 30px;
+  animation: bounce 2.4s ease-in-out infinite;
 }
 
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+.hdr-title { font-family: var(--font-d); font-size: 22px; color: var(--white); line-height: 1; }
+.hdr-sub   { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.65); letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* Desktop nav tabs in header */
+.hdr-nav {
+  display: flex; gap: 4px; margin-left: 24px;
 }
 
-.hdr-text {}
-
-.store-title {
-  font-family: var(--font-d);
-  font-size: clamp(20px, 4vw, 28px);
-  color: var(--white);
-  line-height: 1;
-}
-
-.store-subtitle {
-  font-size: 11px;
-  font-weight: 700;
-  color: rgba(255,255,255,0.7);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-top: 3px;
-}
-
-/* mode pill in header */
-.mode-pill {
-  margin-left: auto;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  background: rgba(255,255,255,0.15);
-  border: 2px solid rgba(255,255,255,0.35);
-  border-radius: 100px;
-  padding: 3px;
-  gap: 2px;
-}
-
-.mode-pill-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: var(--font-d);
-  font-size: 12px;
-  color: rgba(255,255,255,0.6);
-  padding: 5px 12px;
-  border-radius: 100px;
-  transition: all 0.18s;
-  white-space: nowrap;
+.hdr-nav-btn {
+  background: rgba(255,255,255,0.12);
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+  padding: 7px 16px;
+  font-family: var(--font-d); font-size: 14px; color: rgba(255,255,255,0.75);
+  cursor: pointer; transition: all 0.18s;
+  display: flex; align-items: center; gap: 7px;
   -webkit-tap-highlight-color: transparent;
-  display: flex;
-  align-items: center;
-  gap: 5px;
 }
 
+.hdr-nav-btn:hover  { background: rgba(255,255,255,0.22); color: var(--white); }
+.hdr-nav-btn.active { background: var(--white); color: var(--blue-dk); border-color: var(--white); }
+
+.hdr-nav-badge {
+  background: var(--red); color: var(--white);
+  font-family: var(--font-b); font-size: 10px; font-weight: 900;
+  min-width: 18px; height: 18px; border-radius: 9px; padding: 0 4px;
+  display: none; align-items: center; justify-content: center;
+  border: 2px solid var(--blue);
+}
+.hdr-nav-badge.show { display: flex; }
+
+/* Mode pill — inside scanner card (white background context) */
+.mode-pill {
+  display: flex; align-items: center;
+  background: var(--gray-l); border: 2px solid var(--gray-m);
+  border-radius: 100px; padding: 3px; gap: 2px;
+}
+.mode-pill-btn {
+  background: none; border: none; cursor: pointer;
+  font-family: var(--font-d); font-size: 12px; color: var(--gray);
+  padding: 5px 13px; border-radius: 100px;
+  transition: all 0.18s; white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  display: flex; align-items: center; gap: 5px;
+}
 .mode-pill-btn.active {
-  background: var(--white);
-  color: var(--blue-dk);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  background: var(--dark); color: var(--white);
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
 }
 
-.color-strip {
-  display: flex;
-  height: 7px;
-  border-radius: 0 0 8px 8px;
-  overflow: hidden;
-}
-
+/* Color strip */
+.color-strip { height: 6px; display: flex; }
 .color-strip span { flex: 1; }
-.cs1{background:#EF233C;}
-.cs2{background:#FF6B35;}
-.cs3{background:#FFD23F;}
-.cs4{background:#06D6A0;}
-.cs5{background:#3A86FF;}
-.cs6{background:#9B5DE5;}
-.cs7{background:#F72585;}
+.cs1{background:#EF233C;} .cs2{background:#FF6B35;} .cs3{background:#FFD23F;}
+.cs4{background:#06D6A0;} .cs5{background:#3A86FF;} .cs6{background:#9B5DE5;} .cs7{background:#F72585;}
 
-/* ── MAIN LAYOUT ── */
-.main-layout {
-  width: 100%;
-  max-width: 1100px;
-  padding: 14px 14px 0;
-  position: relative;
-  z-index: 10;
-  display: flex;
-  gap: 16px;
-  flex-direction: column;
+/* ── Body ── */
+.app-body {
+  flex: 1;
+  max-width: 1400px; margin: 0 auto; width: 100%;
+  padding: 20px 20px 30px;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 20px;
+  align-items: start;
 }
 
-@media (min-width: 820px) {
-  .main-layout { flex-direction: row; align-items: flex-start; }
-  .col-left    { flex: 1; min-width: 0; }
-  .col-right   { width: 380px; flex-shrink: 0; position: sticky; top: 14px; max-height: calc(100vh - 28px); overflow-y: auto; }
-}
-
-/* ── CARD BASE ── */
+/* ── Card base ── */
 .card {
   background: var(--white);
   border: 2.5px solid var(--dark);
-  border-radius: 20px;
-  box-shadow: 5px 5px 0 var(--dark);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
   overflow: hidden;
 }
 
-@keyframes popIn {
-  from { opacity: 0; transform: scale(0.9) translateY(8px); }
-  to   { opacity: 1; transform: scale(1) translateY(0); }
+/* Sticky right column on desktop */
+.col-right {
+  position: sticky;
+  top: 84px; /* header height + gap */
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  display: flex; flex-direction: column; gap: 0;
 }
 
-@keyframes slideIn {
-  from { opacity: 0; transform: translateX(-8px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
+/* ── Page panels ── */
+.page { display: none; }
+.page.active { display: block; animation: slideDown 0.2s ease; }
 
-@keyframes flashGreen {
-  0%,100% { background: var(--white); }
-  30% { background: #D1FAF0; }
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* ── SCAN MODE INDICATOR ── */
+/* ═══════════════════════════════════════
+   SCANNER CARD
+═══════════════════════════════════════ */
 .scan-mode-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex; align-items: center; justify-content: space-between;
   padding: 12px 18px 10px;
-  border-bottom: 2px dashed #E5E7EB;
-  gap: 10px;
+  border-bottom: 2px dashed var(--gray-m);
+  gap: 10px; flex-wrap: wrap;
 }
 
 .scan-mode-label {
-  font-family: var(--font-d);
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  gap: 7px;
+  font-family: var(--font-d); font-size: 14px; color: var(--dark);
+  display: flex; align-items: center; gap: 8px;
 }
 
 .scan-mode-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 0 0 3px rgba(6,214,160,0.25);
-  animation: pulse-dot 1.5s ease-in-out infinite;
-  flex-shrink: 0;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--green); box-shadow: 0 0 0 3px rgba(6,214,160,0.25);
+  animation: pulse-dot 1.6s ease-in-out infinite; flex-shrink: 0;
 }
+.scan-mode-dot.manual { background: var(--orange); box-shadow: 0 0 0 3px rgba(255,107,53,0.25); }
 
-.scan-mode-dot.manual {
-  background: var(--orange);
-  box-shadow: 0 0 0 3px rgba(255,107,53,0.25);
-}
+.scanner-body { padding: 16px 18px 18px; }
 
-@keyframes pulse-dot {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.4); }
-}
-
-/* Desktop mode toggle inside card (hidden on mobile — uses header pill) */
-.inline-mode-toggle { display: none; }
-
-@media (min-width: 820px) {
-  .inline-mode-toggle {
-    display: flex;
-    align-items: center;
-    background: var(--gray-l);
-    border: 2px solid #E5E7EB;
-    border-radius: 100px;
-    padding: 3px;
-    gap: 2px;
-  }
-
-  .imt-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-family: var(--font-d);
-    font-size: 12px;
-    color: var(--gray);
-    padding: 5px 12px;
-    border-radius: 100px;
-    transition: all 0.15s;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  .imt-btn.active {
-    background: var(--dark);
-    color: var(--white);
-    box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
-  }
-}
-
-/* ── SCANNER BODY ── */
-.scanner-body {
-  padding: 14px 18px 16px;
-}
-
-/* scan visual — only show in scan mode */
 .scan-visual {
-  height: 64px;
-  background: var(--gray-l);
-  border: 2px dashed #D1D5DB;
-  border-radius: 14px;
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: all 0.2s;
+  height: 58px; background: var(--gray-l);
+  border: 2px dashed #D1D5DB; border-radius: 14px;
+  position: relative; overflow: hidden; margin-bottom: 14px;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
 }
-
 .scan-visual.hidden { display: none; }
-
-.scan-icon { font-size: 22px; }
-
-.scan-ready-txt {
-  font-family: var(--font-d);
-  font-size: 13px;
-  color: var(--gray);
-}
-
+.scan-icon      { font-size: 20px; }
+.scan-ready-txt { font-family: var(--font-d); font-size: 13px; color: var(--gray); }
 .scan-line {
-  position: absolute;
-  top: 0;
-  left: -3px;
-  width: 3px;
-  height: 100%;
+  position: absolute; top: 0; left: -4px; width: 4px; height: 100%;
   background: linear-gradient(180deg, transparent, var(--orange), transparent);
-  animation: scanMove 2.2s ease-in-out infinite;
-  border-radius: 2px;
+  animation: scanMove 2.2s ease-in-out infinite; border-radius: 2px;
 }
 
-.scan-visual.paused .scan-line {
-  animation-play-state: paused;
-  opacity: 0;
-}
-
-@keyframes scanMove {
-  0%   { left: -3px; opacity: 0; }
-  8%   { opacity: 1; }
-  92%  { opacity: 1; }
-  100% { left: 100%; opacity: 0; }
-}
-
-.input-row {
-  display: flex;
-  gap: 8px;
-}
+.input-row { display: flex; gap: 10px; align-items: stretch; }
 
 .kode-input {
-  flex: 1;
-  background: var(--gray-l);
-  border: 2px solid #E5E7EB;
-  border-radius: 14px;
+  flex: 1; min-width: 0;
+  background: var(--gray-l); border: 2.5px solid var(--gray-m); border-radius: 14px;
   padding: 14px 16px;
-  font-family: var(--font-b);
-  font-weight: 800;
-  color: var(--dark);
-  font-size: max(16px, 1em);
-  outline: none;
-  transition: all 0.18s;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  width: 100%;
-  min-width: 0;
+  font-family: var(--font-b); font-weight: 800; color: var(--dark);
+  font-size: 16px; outline: none; transition: all 0.18s;
+  text-transform: uppercase; letter-spacing: 0.05em;
 }
-
 .kode-input::placeholder {
-  font-size: 13px;
-  font-weight: 600;
-  color: #9CA3AF;
-  text-transform: none;
-  letter-spacing: 0;
+  font-size: 12px; font-weight: 600; color: #9CA3AF;
+  text-transform: none; letter-spacing: 0;
 }
-
-.kode-input:focus {
-  border-color: var(--blue);
-  background: #EFF6FF;
-  box-shadow: 0 0 0 3px rgba(58,134,255,0.18);
-}
-
-/* manual mode */
-.kode-input.manual-mode {
-  border-color: var(--orange);
-  background: #FFF7F0;
-}
-
-.kode-input.manual-mode:focus {
-  border-color: var(--orange);
-  background: #FFF7F0;
-  box-shadow: 0 0 0 3px rgba(255,107,53,0.18);
-}
+.kode-input:focus { border-color: var(--blue); background: #EFF6FF; box-shadow: 0 0 0 3px rgba(58,134,255,0.18); }
+.kode-input.manual-mode { border-color: var(--orange); background: #FFF7F0; }
+.kode-input.manual-mode:focus { box-shadow: 0 0 0 3px rgba(255,107,53,0.18); }
 
 .btn-tambah {
-  background: var(--orange);
-  color: var(--white);
-  border: 2.5px solid var(--dark);
-  border-radius: 14px;
-  padding: 14px 16px;
-  font-family: var(--font-d);
-  font-size: 15px;
-  cursor: pointer;
-  white-space: nowrap;
-  box-shadow: 4px 4px 0 var(--dark);
-  min-height: 52px;
-  -webkit-tap-highlight-color: transparent;
-  transition: all 0.13s;
-  flex-shrink: 0;
+  background: var(--orange); color: var(--white);
+  border: 2.5px solid var(--dark); border-radius: 14px;
+  padding: 0 20px; min-height: 52px; flex-shrink: 0;
+  font-family: var(--font-d); font-size: 15px;
+  cursor: pointer; white-space: nowrap; box-shadow: var(--shadow-s);
+  -webkit-tap-highlight-color: transparent; transition: all 0.13s;
 }
-
-.btn-tambah:active {
-  transform: translate(2px,2px);
-  box-shadow: 1px 1px 0 var(--dark);
-}
+.btn-tambah:active { transform: translate(2px,2px); box-shadow: 0 0 0 var(--dark); }
 
 .hint-text {
-  margin-top: 9px;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--gray);
-  text-align: center;
-  transition: all 0.2s;
+  margin-top: 10px; font-size: 11px; font-weight: 700;
+  color: var(--gray); text-align: center;
 }
 
-/* ── LAST SCANNED TOAST ── */
-.last-scan-toast {
-  margin: 0 18px 14px;
-  background: #D1FAF0;
-  border: 2px solid var(--green-dk);
-  border-radius: 14px;
-  padding: 10px 14px;
-  display: none;
-  align-items: center;
-  gap: 10px;
-  animation: popIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+/* ── Toasts ── */
+.toast-wrap { padding: 0 18px 16px; display: flex; flex-direction: column; gap: 8px; }
+
+.toast {
+  border-radius: 14px; padding: 11px 14px;
+  display: none; align-items: center; gap: 10px;
+  animation: popIn 0.28s cubic-bezier(0.34,1.56,0.64,1);
 }
+.toast.show { display: flex; }
+.toast-success { background: #D1FAF0; border: 2px solid var(--green-dk); }
+.toast-error   { background: #FEE2E2; border: 2px solid var(--red); }
 
-.last-scan-toast.show { display: flex; }
+.toast-emoji { font-size: 22px; flex-shrink: 0; }
+.toast-info  { flex: 1; min-width: 0; }
+.toast-title { font-family: var(--font-d); font-size: 13px; color: var(--dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.toast-sub   { font-size: 11px; font-weight: 800; color: var(--green-dk); margin-top: 1px; }
+.toast-error .toast-sub { color: var(--red); }
 
-.lst-emoji {
-  font-size: 22px;
-  flex-shrink: 0;
-}
-
-.lst-info {
-  flex: 1;
-  min-width: 0;
-}
-
-.lst-nama {
-  font-family: var(--font-d);
-  font-size: 13px;
-  color: var(--dark);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.lst-harga {
-  font-size: 11px;
-  font-weight: 800;
-  color: var(--green-dk);
-}
-
-.lst-qty-badge {
-  background: var(--green);
-  color: var(--white);
-  font-family: var(--font-d);
-  font-size: 13px;
-  padding: 4px 10px;
-  border-radius: 100px;
-  border: 2px solid var(--dark);
-  white-space: nowrap;
-  flex-shrink: 0;
+.qty-badge {
+  background: var(--green); color: var(--white);
+  font-family: var(--font-d); font-size: 13px;
+  padding: 4px 10px; border-radius: 100px;
+  border: 2px solid var(--dark); white-space: nowrap; flex-shrink: 0;
   box-shadow: 2px 2px 0 var(--dark);
 }
 
-/* ── ERROR TOAST ── */
-.error-toast {
-  margin: 0 18px 14px;
-  background: #FEE2E2;
-  border: 2px solid var(--red);
-  border-radius: 14px;
-  padding: 10px 14px;
-  display: none;
-  align-items: center;
-  gap: 10px;
-  animation: popIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
-}
-
-.error-toast.show { display: flex; }
-
-.et-emoji {
-  font-size: 22px;
-  flex-shrink: 0;
-}
-
-.et-msg {
-  font-family: var(--font-d);
-  font-size: 13px;
-  color: var(--red);
-}
-
-/* ── KERANJANG CARD ── */
-.keranjang-header {
-  background: var(--green);
-  padding: 14px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+/* ═══════════════════════════════════════
+   KERANJANG (RIGHT COLUMN)
+═══════════════════════════════════════ */
+.cart-header {
+  background: var(--green); padding: 14px 18px;
+  display: flex; align-items: center; justify-content: space-between;
   border-bottom: 2.5px solid var(--dark);
 }
-
-.keranjang-title {
-  font-family: var(--font-d);
-  font-size: 17px;
-  color: var(--white);
-  display: flex;
-  align-items: center;
-  gap: 7px;
+.cart-title { font-family: var(--font-d); font-size: 17px; color: var(--white); display: flex; align-items: center; gap: 8px; }
+.cart-count { background: rgba(255,255,255,0.28); border-radius: 100px; padding: 1px 9px; font-size: 14px; }
+.btn-reset-cart {
+  background: rgba(255,255,255,0.18); color: var(--white);
+  border: 2px solid rgba(255,255,255,0.4); border-radius: 10px;
+  padding: 5px 12px; font-family: var(--font-d); font-size: 12px;
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
 }
 
-.k-count {
-  background: rgba(255,255,255,0.3);
-  border-radius: 100px;
-  padding: 1px 9px;
-  font-size: 14px;
-}
+/* Empty */
+.cart-empty { padding: 40px 20px; text-align: center; }
+.cart-empty-emoji { font-size: 44px; margin-bottom: 10px; }
+.cart-empty-text  { font-family: var(--font-d); font-size: 16px; color: var(--gray); margin-bottom: 4px; }
+.cart-empty-sub   { font-size: 11px; font-weight: 700; color: #9CA3AF; }
 
-.btn-clear-k {
-  background: rgba(255,255,255,0.2);
-  color: var(--white);
-  border: 2px solid rgba(255,255,255,0.45);
-  border-radius: 10px;
-  padding: 5px 11px;
-  font-family: var(--font-d);
-  font-size: 12px;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.btn-clear-k:active {
-  background: rgba(255,255,255,0.4);
-}
-
-/* empty */
-.cart-empty {
-  padding: 36px 20px;
-  text-align: center;
-}
-
-.cart-empty-emoji { font-size: 44px; margin-bottom: 8px; }
-
-.cart-empty-text {
-  font-family: var(--font-d);
-  font-size: 16px;
-  color: var(--gray);
-  margin-bottom: 4px;
-}
-
-.cart-empty-sub {
-  font-size: 11px;
-  font-weight: 700;
-  color: #9CA3AF;
-}
-
-/* items */
-.cart-list {}
-
+/* Cart items */
 .cart-item {
   display: grid;
-  grid-template-columns: 30px 1fr auto auto;
-  align-items: center;
-  gap: 9px;
-  padding: 11px 16px;
-  border-bottom: 2px dashed #E5E7EB;
-  transition: background 0.2s;
+  grid-template-columns: 32px 1fr auto auto;
+  align-items: center; gap: 8px;
+  padding: 11px 14px;
+  border-bottom: 2px dashed var(--gray-m);
+  transition: background 0.18s;
 }
-
 .cart-item:last-child { border-bottom: none; }
-
 .cart-item.flash { animation: flashGreen 0.5s ease; }
 
-.ci-emoji { font-size: 20px; text-align: center; }
+.ci-emoji { font-size: 20px; text-align: center; line-height: 1; }
+.ci-info  { min-width: 0; }
+.ci-nama  { font-family: var(--font-d); font-size: 13px; color: var(--dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.3; }
+.ci-sub   { font-size: 10px; font-weight: 700; color: var(--gray); margin-top: 1px; }
 
-.ci-info { min-width: 0; }
+.qty-ctrl { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
 
-.ci-nama {
+.qty-btn {
+  width: 30px; height: 30px; border-radius: 8px;
+  border: 2px solid var(--dark); background: var(--gray-l);
+  font-family: var(--font-d); font-size: 16px; color: var(--dark);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  box-shadow: 2px 2px 0 var(--dark); transition: all 0.1s;
+  -webkit-tap-highlight-color: transparent; flex-shrink: 0;
+}
+.qty-btn:active { transform: translate(1px,1px); box-shadow: 0 0 0 var(--dark); }
+.qty-btn.minus  { background: #FEE2E2; }
+
+.qty-input {
+  font-family: var(--font-d); font-size: 15px; color: var(--dark);
+  width: 40px; text-align: center;
+  background: var(--white); border: 2px solid var(--gray-m); border-radius: 8px;
+  padding: 3px 2px; outline: none; -moz-appearance: textfield;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.qty-input::-webkit-inner-spin-button,
+.qty-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+.qty-input:focus  { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(58,134,255,0.18); }
+.qty-input.invalid{ border-color: var(--red); background: #FEE2E2; }
+
+.ci-price-col { text-align: right; flex-shrink: 0; }
+.ci-price     { font-family: var(--font-d); font-size: 13px; color: var(--blue); white-space: nowrap; }
+.ci-subtotal  { font-size: 10px; font-weight: 700; color: var(--gray); white-space: nowrap; }
+
+/* Cart footer totals */
+.cart-footer {
+  border-top: 2.5px solid var(--dark);
+  padding: 14px 18px 16px; background: #FFFEF5;
+}
+.total-row  { display: flex; justify-content: space-between; align-items: center; padding: 3px 0; }
+.total-lbl  { font-size: 12px; font-weight: 700; color: var(--gray); }
+.total-val  { font-size: 13px; font-weight: 800; color: var(--dark); }
+.total-grand{ border-top: 2px dashed var(--gray-m); margin-top: 10px; padding-top: 10px; }
+.total-grand .total-lbl { font-family: var(--font-d); font-size: 16px; color: var(--dark); }
+.total-grand .total-val { font-family: var(--font-d); font-size: 26px; color: var(--green-dk); }
+
+.btn-clear-all {
+  width: 100%; margin-top: 12px;
+  background: var(--gray-l); color: var(--gray);
+  border: 2px solid var(--gray-m); border-radius: 12px;
+  padding: 11px; font-family: var(--font-d); font-size: 14px;
+  cursor: pointer; box-shadow: 3px 3px 0 var(--gray-m);
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-clear-all:active { background: #FEE2E2; color: var(--red); border-color: var(--red); }
+
+/* ═══════════════════════════════════════
+   BARANG & MEMBER PANELS
+═══════════════════════════════════════ */
+.panel-header {
+  padding: 18px 18px 14px;
+  border-bottom: 2px solid var(--gray-m);
+}
+
+.panel-title {
+  font-family: var(--font-d); font-size: 20px; color: var(--dark);
+  margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+}
+
+.search-bar { display: flex; gap: 8px; align-items: stretch; }
+
+.search-input {
+  flex: 1; min-width: 0;
+  background: var(--gray-l); border: 2px solid var(--gray-m); border-radius: 12px;
+  padding: 11px 14px;
+  font-family: var(--font-b); font-weight: 700; color: var(--dark);
+  font-size: 14px; outline: none; transition: all 0.18s;
+}
+.search-input:focus { border-color: var(--blue); background: #EFF6FF; box-shadow: 0 0 0 3px rgba(58,134,255,0.18); }
+
+.btn-search {
+  background: var(--blue); color: var(--white);
+  border: 2.5px solid var(--dark); border-radius: 12px;
+  padding: 0 18px; min-height: 46px; flex-shrink: 0;
+  font-family: var(--font-d); font-size: 14px;
+  cursor: pointer; white-space: nowrap;
+  box-shadow: var(--shadow-s); transition: all 0.13s;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-search:active { transform: translate(2px,2px); box-shadow: 0 0 0 var(--dark); }
+
+.filter-bar { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; align-items: center; }
+
+.filter-select {
+  background: var(--gray-l); border: 2px solid var(--gray-m); border-radius: 10px;
+  padding: 8px 12px;
+  font-family: var(--font-b); font-weight: 700; color: var(--dark);
+  font-size: 13px; outline: none; cursor: pointer; transition: border-color 0.15s;
+}
+.filter-select:focus { border-color: var(--blue); }
+
+/* Results meta bar */
+.results-meta {
+  padding: 8px 18px 6px;
+  font-size: 12px; font-weight: 700; color: var(--gray);
+  display: none; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--gray-m);
+}
+.results-meta.show { display: flex; }
+
+/* ── Tabel Grid (shared) ── */
+.tbl-wrap { overflow-x: auto; }
+
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.tbl thead tr {
+  background: var(--gray-l);
+  border-bottom: 2px solid var(--dark);
+}
+
+.tbl th {
+  padding: 9px 12px;
+  font-family: var(--font-d);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--gray-dk);
+  text-align: left;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.tbl th.col-right { text-align: right; }
+.tbl th.col-center { text-align: center; }
+
+.tbl tbody tr {
+  border-bottom: 1px solid var(--gray-l);
+  transition: background 0.12s;
+  cursor: pointer;
+}
+.tbl tbody tr:last-child { border-bottom: none; }
+.tbl tbody tr:hover { background: #EFF6FF; }
+.tbl tbody tr.row-expanded { background: #EFF6FF; }
+
+.tbl td {
+  padding: 9px 12px;
+  vertical-align: middle;
+  color: var(--dark);
+}
+
+.tbl td.col-right  { text-align: right; }
+.tbl td.col-center { text-align: center; }
+
+/* Kolom kode: monospace, right-align */
+.tbl .col-kode {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--blue-dk);
+  text-align: right;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+}
+
+/* Kolom nama: wrap */
+.tbl .col-nama {
   font-family: var(--font-d);
   font-size: 13px;
   color: var(--dark);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 1.2;
+  line-height: 1.3;
 }
-
-.ci-sub {
+.tbl .col-nama .nama-sub {
+  font-family: var(--font-b);
   font-size: 10px;
   font-weight: 700;
   color: var(--gray);
   margin-top: 1px;
 }
 
-.qty-ctrl {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  flex-shrink: 0;
-}
-
-.qty-btn {
-  width: 30px;
-  height: 30px;
-  border-radius: 8px;
-  border: 2px solid var(--dark);
-  background: var(--gray-l);
-  font-family: var(--font-d);
-  font-size: 16px;
-  color: var(--dark);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 2px 2px 0 var(--dark);
-  transition: all 0.1s;
-  -webkit-tap-highlight-color: transparent;
-  position: relative;
-}
-
-.qty-btn::after {
-  content: '';
-  position: absolute;
-  inset: -6px;
-}
-
-.qty-btn:active {
-  transform: translate(1px,1px);
-  box-shadow: 0 0 0 var(--dark);
-}
-
-.qty-btn.minus { background: #FEE2E2; }
-
-.qty-btn.minus:active { background: #fca5a5; }
-
-.qty-input {
-  font-family: var(--font-d);
-  font-size: 15px;
-  color: var(--dark);
-  width: 42px;
-  text-align: center;
-  background: var(--white);
-  border: 2px solid #D1D5DB;
-  border-radius: 8px;
-  padding: 3px 4px;
-  outline: none;
-  -moz-appearance: textfield;
-  transition: border-color 0.15s, box-shadow 0.15s;
-}
-
-.qty-input::-webkit-inner-spin-button,
-.qty-input::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-}
-
-.qty-input:focus {
-  border-color: var(--blue);
-  box-shadow: 0 0 0 3px rgba(58,134,255,0.18);
-}
-
-.qty-input.invalid {
-  border-color: var(--red);
-  background: #FEE2E2;
-}
-
-.ci-harga-col {
-  text-align: right;
-  flex-shrink: 0;
-}
-
-.ci-harga {
+/* Harga */
+.tbl .col-harga {
   font-family: var(--font-d);
   font-size: 13px;
-  color: var(--blue);
-  white-space: nowrap;
-}
-
-.ci-subtotal {
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--gray);
-  white-space: nowrap;
-}
-
-/* total footer */
-.cart-footer {
-  border-top: 2.5px solid var(--dark);
-  padding: 14px 18px 16px;
-  background: #FFFEF5;
-}
-
-.total-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 3px 0;
-}
-
-.total-lbl {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--gray);
-}
-
-.total-val {
-  font-size: 13px;
-  font-weight: 800;
-  color: var(--dark);
-}
-
-.total-grand {
-  border-top: 2px dashed #D1D5DB;
-  margin-top: 8px;
-  padding-top: 10px;
-}
-
-.total-grand .total-lbl {
-  font-family: var(--font-d);
-  font-size: 16px;
-  color: var(--dark);
-}
-
-.total-grand .total-val {
-  font-family: var(--font-d);
-  font-size: clamp(20px, 4vw, 26px);
   color: var(--green-dk);
+  white-space: nowrap;
+  text-align: right;
 }
 
-.btn-reset {
-  width: 100%;
-  margin-top: 12px;
-  background: var(--gray-l);
-  color: var(--gray);
-  border: 2px solid #D1D5DB;
-  border-radius: 12px;
-  padding: 11px;
-  font-family: var(--font-d);
-  font-size: 14px;
-  cursor: pointer;
-  box-shadow: 3px 3px 0 #D1D5DB;
-  -webkit-tap-highlight-color: transparent;
-  min-height: 46px;
+/* Aksi */
+.tbl .col-aksi { text-align: center; width: 46px; }
+
+.btn-tbl-add {
+  width: 30px; height: 30px;
+  background: var(--orange); color: var(--white);
+  border: 2px solid var(--dark); border-radius: 8px;
+  font-size: 16px; font-family: var(--font-d);
+  cursor: pointer; box-shadow: 2px 2px 0 var(--dark);
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: all 0.1s; -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+}
+.btn-tbl-add:active { transform: translate(1px,1px); box-shadow: 0 0 0 var(--dark); }
+
+/* Expand row detail (barang) */
+.tbl-detail-row { display: none; background: var(--gray-xl); }
+.tbl-detail-row.open { display: table-row; }
+.tbl-detail-row td {
+  padding: 8px 14px 12px 14px;
+  border-bottom: 1.5px solid var(--gray-m);
 }
 
-.btn-reset:active {
-  background: #FEE2E2;
-  color: var(--red);
-  border-color: var(--red);
+/* Member: phone masked */
+.tbl .col-hp {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.phone-stars { color: #9CA3AF; }
+.phone-last4 { color: var(--dark); font-weight: 700; }
+
+/* Member expand detail */
+.member-expand-row { display: none; background: var(--gray-xl); }
+.member-expand-row.open { display: table-row; }
+.member-expand-row td { padding: 8px 14px 12px; border-bottom: 1.5px solid var(--gray-m); }
+.member-expand-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* Badges inline */
+.badge {
+  font-family: var(--font-d); font-size: 11px;
+  padding: 2px 8px; border-radius: 100px;
+  border: 1.5px solid var(--dark); white-space: nowrap; display: inline-block;
+}
+.badge-point { background: var(--yellow); color: var(--dark); }
+.badge-disc  { background: var(--green); color: var(--white); }
+
+/* ── Phone masked display ── */
+.detail-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.detail-chip {
+  background: var(--white); border: 1.5px solid var(--gray-m); border-radius: 8px;
+  padding: 4px 10px; font-size: 12px; font-weight: 700; color: var(--gray);
+}
+.detail-chip b { color: var(--dark); font-weight: 800; }
+
+/* ── Loading / Empty ── */
+.loading-wrap { padding: 48px 20px; text-align: center; }
+.spinner {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 3px solid var(--gray-m); border-top-color: var(--blue);
+  animation: spin 0.8s linear infinite; margin: 0 auto 12px;
+}
+.loading-txt { font-family: var(--font-d); font-size: 14px; color: var(--gray); }
+
+.empty-state { padding: 48px 20px; text-align: center; }
+.empty-emoji { font-size: 42px; margin-bottom: 10px; }
+.empty-text  { font-family: var(--font-d); font-size: 16px; color: var(--gray); }
+.empty-sub   { font-size: 12px; font-weight: 700; color: #9CA3AF; margin-top: 4px; }
+
+/* ── Pagination ── */
+.pagination {
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+  padding: 14px 16px;
+  border-top: 2px dashed var(--gray-m); flex-wrap: wrap;
+}
+.page-btn {
+  background: var(--white); border: 2px solid var(--gray-m); border-radius: 10px;
+  padding: 6px 12px; font-family: var(--font-d); font-size: 13px; color: var(--gray);
+  cursor: pointer; transition: all 0.14s; min-width: 36px; text-align: center;
+}
+.page-btn:hover    { border-color: var(--blue); color: var(--blue); }
+.page-btn.active   { background: var(--blue); color: var(--white); border-color: var(--blue); box-shadow: 2px 2px 0 var(--blue-dk); }
+.page-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.page-ellipsis { font-size: 13px; font-weight: 700; color: var(--gray); padding: 0 2px; }
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+.app-footer {
+  text-align: center; padding: 12px 20px;
+  font-size: 11px; font-weight: 700; color: var(--gray);
+  position: relative; z-index: 1;
 }
 
-/* ── MOBILE BOTTOM NAV (< 820px) ── */
-.bottom-nav {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: calc(62px + var(--safe-b));
-  padding-bottom: var(--safe-b);
-  background: var(--white);
-  border-top: 3px solid var(--dark);
-  z-index: 100;
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
-}
-
-.bottom-nav-inner {
-  display: flex;
-  height: 62px;
-}
-
-.nav-btn {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  background: none;
-  border: none;
-  font-family: var(--font-b);
-  font-size: 10px;
-  font-weight: 800;
-  color: var(--gray);
-  cursor: pointer;
-  transition: all 0.15s;
-  position: relative;
-  padding: 6px 4px 4px;
-  -webkit-tap-highlight-color: transparent;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.nav-btn .nav-icon {
-  font-size: 22px;
-  line-height: 1;
-  transition: transform 0.2s;
-}
-
-.nav-btn.active { color: var(--blue); }
-
-.nav-btn.active .nav-icon { transform: scale(1.15); }
-
-.nav-btn.active::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 38px;
-  height: 3px;
-  background: var(--blue);
-  border-radius: 0 0 4px 4px;
-}
-
-.nav-badge {
-  position: absolute;
-  top: 4px;
-  right: calc(50% - 24px);
-  background: var(--red);
-  color: var(--white);
-  font-size: 10px;
-  font-weight: 900;
-  min-width: 17px;
-  height: 17px;
-  border-radius: 9px;
-  padding: 0 3px;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid var(--white);
-}
-
-.nav-badge.show {
-  display: flex;
-  animation: popIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
-}
-
-/* On mobile: only show active panel */
+/* ═══════════════════════════════════════
+   MOBILE  (< 820px)
+═══════════════════════════════════════ */
 @media (max-width: 819px) {
-  .bottom-nav { display: block; }
+  body { padding-bottom: calc(var(--nav-h) + var(--safe-b) + 8px); }
 
-  body {
-    padding-bottom: calc(62px + var(--safe-b) + 10px);
+  /* Header simplification */
+  .hdr-nav { display: none; }         /* desktop tabs hidden */
+  .hdr-title { font-size: 18px; }
+  .header-inner { padding: 0 14px; height: 56px; gap: 10px; }
+  .hdr-emoji { font-size: 24px; }
+
+  /* Body: single column */
+  .app-body {
+    grid-template-columns: 1fr;
+    padding: 12px 12px 16px;
+    gap: 12px;
   }
 
-  .col-left, .col-right { width: 100%; }
-
-  .col-left.mob-hidden,
-  .col-right.mob-hidden {
-    display: none;
+  /* Right column: not sticky on mobile, shown as full panel */
+  .col-right {
+    position: static;
+    max-height: none;
   }
 
-  /* hide inline mode toggle, show header pill */
-  .inline-mode-toggle { display: none !important; }
+  /* Show/hide panels via JS class */
+  .mob-hidden { display: none !important; }
+
+  /* scanner input: full width */
+  .input-row { flex-direction: row; }   /* keep row but allow wrap */
+
+  /* ── Bottom Nav ── */
+  .bottom-nav {
+    display: block;
+    position: fixed; bottom: 0; left: 0; right: 0;
+    height: calc(var(--nav-h) + var(--safe-b));
+    padding-bottom: var(--safe-b);
+    background: var(--white); border-top: 3px solid var(--dark);
+    z-index: 300; box-shadow: 0 -4px 24px rgba(0,0,0,0.12);
+  }
+  .bottom-nav-inner { display: flex; height: var(--nav-h); }
+
+  .nav-btn {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 2px;
+    background: none; border: none;
+    font-size: 9px; font-weight: 800; color: var(--gray);
+    cursor: pointer; transition: all 0.15s;
+    position: relative; padding: 5px 2px 3px;
+    -webkit-tap-highlight-color: transparent;
+    letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .nav-icon { font-size: 21px; line-height: 1; transition: transform 0.2s; display: block; }
+  .nav-btn.active { color: var(--blue); }
+  .nav-btn.active .nav-icon { transform: scale(1.18); }
+  .nav-btn.active::before {
+    content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 36px; height: 3px; background: var(--blue); border-radius: 0 0 4px 4px;
+  }
+  .nav-badge {
+    position: absolute; top: 3px; right: calc(50% - 22px);
+    background: var(--red); color: var(--white);
+    font-size: 10px; font-weight: 900; min-width: 17px; height: 17px;
+    border-radius: 9px; padding: 0 3px;
+    display: none; align-items: center; justify-content: center;
+    border: 2px solid var(--white);
+  }
+  .nav-badge.show { display: flex; animation: popIn 0.25s cubic-bezier(0.34,1.56,0.64,1); }
+
+  /* Tighter padding on mobile */
+  .panel-header { padding: 14px 14px 12px; }
+  .panel-title  { font-size: 17px; margin-bottom: 10px; }
+  .scanner-body { padding: 12px 14px 14px; }
+  .scan-mode-bar{ padding: 10px 14px 8px; }
+  .cart-footer  { padding: 12px 14px 14px; }
+  .total-grand .total-val { font-size: 22px; }
+  .barang-row   { padding: 10px 12px; gap: 10px; }
+  .barang-detail{ padding: 8px 12px 12px 62px; }
+  .member-row   { padding: 11px 12px; }
 }
 
 @media (min-width: 820px) {
-  /* always show both cols on desktop */
-  .col-left.mob-hidden,
-  .col-right.mob-hidden {
-    display: block !important;
-  }
+  /* Desktop: bottom nav hidden */
+  .bottom-nav { display: none !important; }
 
-  /* hide header mode pill on desktop (use inline toggle) */
-  .mode-pill { display: none !important; }
-}
-
-footer {
-  width: 100%;
-  max-width: 1100px;
-  padding: 10px 14px 0;
-  position: relative;
-  z-index: 10;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--gray);
-  text-align: center;
-}
-
-@media (min-width: 820px) and (hover: hover) {
-  .btn-tambah:hover {
-    transform: translate(-2px,-2px);
-    box-shadow: 6px 6px 0 var(--dark);
-  }
-
-  .qty-btn:hover {
-    background: var(--yellow);
-    transform: translate(-1px,-1px);
-  }
-
-  .qty-btn.minus:hover {
-    background: var(--red);
-    color: var(--white);
-  }
-}
-
-/* ── MOBILE IMPROVEMENTS ── */
-button, input {
-  touch-action: manipulation;
-}
-
-@media (max-width: 480px) {
-  .wrap,
-  header,
-  .main-layout {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
-  .header-banner {
-    padding: 12px;
-    border-radius: 16px 16px 0 0;
-    gap: 10px;
-  }
-
-  .hdr-emoji {
-    font-size: 26px;
-  }
-
-  .store-title {
-    font-size: 18px;
-  }
-
-  .store-subtitle {
-    font-size: 10px;
-  }
-
-  .scan-mode-bar {
-    padding: 10px 12px 8px;
-  }
-
-  .scan-mode-label {
-    font-size: 12px;
-  }
-
-  .scanner-body {
-    padding: 12px;
-  }
-
-  .input-row {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .kode-input {
-    width: 100%;
-    font-size: 16px;
-    padding: 16px;
-  }
-
-  .btn-tambah {
-    width: 100%;
-    padding: 16px;
-    font-size: 16px;
-  }
-
-  .scan-visual {
-    height: 52px;
-  }
-
-  .scan-ready-txt {
-    font-size: 11px;
-  }
-
-  .last-scan-toast,
-  .error-toast {
-    margin: 0 10px 12px;
-    padding: 10px;
-    border-radius: 12px;
-  }
-
-  .lst-nama {
-    font-size: 12px;
-  }
-
-  .lst-harga {
-    font-size: 10px;
-  }
-
-  .cart-item {
-    grid-template-columns: 24px 1fr;
-    grid-template-rows: auto auto auto;
-    gap: 6px;
-    padding: 10px;
-  }
-
-  .ci-emoji {
-    grid-row: span 3;
-    font-size: 18px;
-  }
-
-  .ci-info {
-    min-width: 0;
-  }
-
-  .ci-nama {
-    font-size: 12px;
-  }
-
-  .qty-ctrl {
-    grid-column: 2 / -1;
-    justify-content: flex-start;
-    margin-top: 2px;
-    flex-wrap: wrap;
-  }
-
-  .ci-harga-col {
-    grid-column: 2 / -1;
-    text-align: left;
-    margin-top: 2px;
-  }
-
-  .qty-btn {
-    width: 28px;
-    height: 28px;
-  }
-
-  .qty-input {
-    width: 40px;
-    font-size: 14px;
-  }
-
-  .cart-footer {
-    padding: 12px;
-  }
-
-  .card {
-    box-shadow: 3px 3px 0 var(--dark);
-  }
-}
-
-/* safety */
-img, video, canvas, svg {
-  max-width: 100%;
-  height: auto;
+  /* Desktop hover */
+  .btn-tambah:hover  { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--dark); }
+  .btn-search:hover  { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--dark); }
+  .qty-btn:hover     { background: var(--yellow); }
+  .qty-btn.minus:hover{ background: var(--red); color: var(--white); }
+  .btn-add-cart:hover{ transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--dark); }
+  .hdr-nav-btn:hover { background: rgba(255,255,255,0.22); }
 }
   </style>
 </head>
 <body>
 
-<!-- ── HEADER ── -->
-<header>
-  <div class="header-banner">
-    <span class="hdr-emoji">👑</span>
-    <div class="hdr-text">
-      <div class="store-title">Cek Harga Mainan</div>
-      <div class="store-subtitle">Scan · Cek Harga · Hitung Belanja</div>
+<!-- ════════════════════════════════════
+     APP SHELL
+════════════════════════════════════ -->
+<div class="app-shell">
+
+  <!-- ── Header ── -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="hdr-brand">
+        <span class="hdr-emoji">👑</span>
+        <div>
+          <div class="hdr-title">Sukses Crown Toys</div>
+          <div class="hdr-sub">Point of Sale · Cek Harga</div>
+        </div>
+      </div>
+
+      <!-- Desktop tab nav -->
+      <nav class="hdr-nav">
+        <button class="hdr-nav-btn active" id="deskTabScan"   onclick="switchPage('scan')">🔍 Scanner</button>
+        <button class="hdr-nav-btn"        id="deskTabBarang" onclick="switchPage('barang')">📦 Barang</button>
+        <button class="hdr-nav-btn"        id="deskTabMember" onclick="switchPage('member')">👥 Member</button>
+      </nav>
     </div>
-    <!-- Mode toggle (mobile: in header) -->
-    <div class="mode-pill" id="headerModePill">
-      <button class="mode-pill-btn active" id="hdrBtnScan" onclick="setMode('scan')">📷 Scan</button>
-      <button class="mode-pill-btn"        id="hdrBtnManual" onclick="setMode('manual')">⌨️ Manual</button>
+    <div class="color-strip">
+      <span class="cs1"></span><span class="cs2"></span><span class="cs3"></span>
+      <span class="cs4"></span><span class="cs5"></span><span class="cs6"></span><span class="cs7"></span>
     </div>
-  </div>
-  <div class="color-strip">
-    <span class="cs1"></span><span class="cs2"></span><span class="cs3"></span>
-    <span class="cs4"></span><span class="cs5"></span><span class="cs6"></span>
-    <span class="cs7"></span>
-  </div>
-</header>
+  </header>
 
-<!-- ── MAIN ── -->
-<div class="main-layout">
+  <!-- ── App Body ── -->
+  <main class="app-body">
 
-  <!-- LEFT: Scanner + last result -->
-  <div class="col-left" id="colLeft">
+    <!-- LEFT / MAIN column -->
+    <div class="col-left" id="colMain">
 
-    <div class="card">
-      <!-- mode bar -->
-      <div class="scan-mode-bar">
-        <div class="scan-mode-label">
-          <span class="scan-mode-dot" id="modeDot"></span>
-          <span id="modeLabel">Mode Scan Aktif</span>
-        </div>
-        <!-- Desktop inline toggle -->
-        <div class="inline-mode-toggle" id="desktopModeToggle">
-          <button class="imt-btn active" id="deskBtnScan"   onclick="setMode('scan')">📷 Scan</button>
-          <button class="imt-btn"        id="deskBtnManual" onclick="setMode('manual')">⌨️ Manual</button>
+      <!-- PAGE: Scanner -->
+      <div class="page active" id="pageScan">
+        <div class="card">
+          <div class="scan-mode-bar">
+            <div class="scan-mode-label">
+              <span class="scan-mode-dot" id="modeDot"></span>
+              <span id="modeLabel">Mode Scan Aktif</span>
+            </div>
+            <!-- Toggle Scan / Manual — di dalam tab Scanner -->
+            <div class="mode-pill" id="modePill">
+              <button class="mode-pill-btn active" id="btnModeScan"   onclick="setMode('scan')">📷 Scan</button>
+              <button class="mode-pill-btn"        id="btnModeManual" onclick="setMode('manual')">⌨️ Ketik</button>
+            </div>
+          </div>
+          <div class="scanner-body">
+            <div class="scan-visual" id="scanVisual">
+              <div class="scan-icon">𝄃𝄂𝄀𝄁𝄃𝄂𝄂𝄃</div>
+              <div class="scan-ready-txt">Siap scan barcode...</div>
+              <div class="scan-line"></div>
+            </div>
+            <div class="input-row">
+              <input type="text" id="kodeInput" class="kode-input"
+                placeholder="Klik di sini, lalu scan barcode..."
+                autocomplete="off" autocorrect="off"
+                autocapitalize="characters" inputmode="text"/>
+              <button class="btn-tambah" id="btnTambah" onclick="submitManual()" style="display:none">
+                ➕ Tambah
+              </button>
+            </div>
+            <div class="hint-text" id="hintText">📷 Klik di kolom input di atas, lalu scan barcode barang</div>
+          </div>
+          <div class="toast-wrap">
+            <div class="toast toast-success" id="toastSuccess">
+              <div class="toast-emoji" id="toastEmoji">🎁</div>
+              <div class="toast-info">
+                <div class="toast-title" id="toastNama">—</div>
+                <div class="toast-sub"   id="toastHarga">—</div>
+              </div>
+              <div class="qty-badge" id="toastQty">×1</div>
+            </div>
+            <div class="toast toast-error" id="toastError">
+              <div class="toast-emoji">❌</div>
+              <div class="toast-info">
+                <div class="toast-title" id="toastErrMsg">Barang tidak ditemukan</div>
+                <div class="toast-sub" style="color:var(--red)">Periksa kembali kode barcode</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="scanner-body">
-        <!-- scan animation bar (hidden in manual mode) -->
-        <div class="scan-visual" id="scanVisual">
-          <div class="scan-icon">𝄃𝄂𝄀𝄁𝄃𝄂𝄂𝄃</div>
-          <div class="scan-ready-txt">Siap Scan Barcode...</div>
-          <div class="scan-line"></div>
+      <!-- PAGE: Barang -->
+      <div class="page" id="pageBarang">
+        <div class="card">
+          <div class="panel-header">
+            <div class="panel-title">📦 Cari Barang</div>
+            <div class="search-bar">
+              <input type="text" id="barangSearch" class="search-input"
+                placeholder="Ketik awal nama/kode, misal: BON, MOB..."
+                onkeydown="if(event.key==='Enter') doSearchBarang()"/>
+              <button class="btn-search" onclick="doSearchBarang()">🔍 Cari</button>
+            </div>
+            <div class="filter-bar">
+              <select class="filter-select" id="barangKategori" onchange="doSearchBarang()">
+                <option value="">Semua Kategori</option>
+              </select>
+              <span style="font-size:11px;font-weight:700;color:var(--gray)">💡 Pencarian dimulai dari awal kata</span>
+            </div>
+          </div>
+          <div class="results-meta" id="barangMeta"></div>
+          <div id="barangList">
+            <div class="empty-state">
+              <div class="empty-emoji">🔍</div>
+              <div class="empty-text">Ketik nama atau kode barang</div>
+              <div class="empty-sub">Minimal 2 karakter, atau pilih kategori di atas</div>
+            </div>
+          </div>
+          <div id="barangPagination"></div>
         </div>
-
-        <div class="input-row">
-          <input
-            type="text" id="kodeInput" class="kode-input"
-            placeholder="Arahkan dan tekan cursor mouse ke sini..."
-            autocomplete="off" autocorrect="off"
-            autocapitalize="characters" inputmode="text"
-          />
-          <!-- In manual mode, show Tambah button -->
-          <button class="btn-tambah" id="btnTambah" onclick="submitManual()" style="display:none">
-            ➕ Tambah
-          </button>
-        </div>
-        <div class="hint-text" id="hintText">📷 Arahkan dan tekan cursor mouse ke kolom input di atas dan scan barcode barang</div>
       </div>
 
-      <!-- Last scan success toast -->
-      <div class="last-scan-toast" id="lastScanToast">
-        <div class="lst-emoji" id="lstEmoji">🎁</div>
-        <div class="lst-info">
-          <div class="lst-nama" id="lstNama">—</div>
-          <div class="lst-harga" id="lstHarga">—</div>
+      <!-- PAGE: Member -->
+      <div class="page" id="pageMember">
+        <div class="card">
+          <div class="panel-header">
+            <div class="panel-title">👥 Cari Member</div>
+            <div class="search-bar">
+              <input type="text" id="memberSearch" class="search-input"
+                placeholder="Ketik awal nama / kota / kode member..."
+                onkeydown="if(event.key==='Enter') doSearchMember()"/>
+              <button class="btn-search" onclick="doSearchMember()">🔍 Cari</button>
+            </div>
+            <div class="filter-bar">
+              <span style="font-size:11px;font-weight:700;color:var(--gray)">🔒 Nomor HP/Telp disensor — hanya 4 digit terakhir terlihat</span>
+            </div>
+          </div>
+          <div class="results-meta" id="memberMeta"></div>
+          <div id="memberList">
+            <div class="empty-state">
+              <div class="empty-emoji">🔍</div>
+              <div class="empty-text">Ketik nama atau kota member</div>
+              <div class="empty-sub">Minimal 2 karakter untuk mulai pencarian</div>
+            </div>
+          </div>
+          <div id="memberPagination"></div>
         </div>
-        <div class="lst-qty-badge" id="lstQtyBadge">×1</div>
       </div>
 
-      <!-- Error toast -->
-      <div class="error-toast" id="errorToast">
-        <div class="et-emoji">❌</div>
-        <div class="et-msg" id="errorMsg">Barang tidak ditemukan</div>
+      <!-- PAGE: Keranjang (mobile only — on desktop keranjang always in right col) -->
+      <div class="page" id="pageCart">
+        <div id="cartCardMobile"></div><!-- cloned/rendered here on mobile -->
       </div>
 
     </div>
-  </div>
 
-  <!-- RIGHT: Keranjang -->
-  <div class="col-right mob-hidden" id="colRight">
-    <div class="card">
-      <div class="keranjang-header">
-        <div class="keranjang-title">
-          🛒 Keranjang
-          <span class="k-count" id="kCount">0</span>
+    <!-- RIGHT column: Keranjang (desktop always visible) -->
+    <div class="col-right" id="colRight">
+      <div class="card" id="cartCard">
+        <div class="cart-header">
+          <div class="cart-title">
+            🛒 Keranjang
+            <span class="cart-count" id="cartCount">0</span>
+          </div>
+          <button class="btn-reset-cart" onclick="clearCart()">🗑️ Reset</button>
         </div>
-        <button class="btn-clear-k" onclick="clearCart()">🗑️ Reset</button>
-      </div>
-
-      <div id="cartBody"></div>
-
-      <div class="cart-footer" id="cartFooter" style="display:none">
-        <div class="total-row">
-          <span class="total-lbl">Total Item</span>
-          <span class="total-val" id="totalItem">0</span>
+        <div id="cartBody"></div>
+        <div class="cart-footer" id="cartFooter" style="display:none">
+          <div class="total-row">
+            <span class="total-lbl">Total Item</span>
+            <span class="total-val" id="totalItem">0 item</span>
+          </div>
+          <div class="total-row total-grand">
+            <span class="total-lbl">Total Belanja</span>
+            <span class="total-val" id="grandTotal">Rp 0</span>
+          </div>
+          <button class="btn-clear-all" onclick="clearCart()">🔄 Kosongkan Keranjang</button>
         </div>
-        <div class="total-row total-grand">
-          <span class="total-lbl">Total Belanja</span>
-          <span class="total-val" id="grandTotal">Rp 0</span>
-        </div>
-        <button class="btn-reset" onclick="clearCart()">🔄 Kosongkan Keranjang</button>
       </div>
     </div>
-  </div>
 
+  </main>
+
+  <footer class="app-footer">👑 Sukses Crown Toys &nbsp;·&nbsp; v4.1 &nbsp;·&nbsp; POS System</footer>
 </div>
 
-<footer>👑 Sukses Crown Toys &nbsp;·&nbsp; v3.0</footer>
-
-<!-- ── MOBILE BOTTOM NAV ── -->
+<!-- ── Mobile Bottom Nav ── -->
 <nav class="bottom-nav">
   <div class="bottom-nav-inner">
-    <button class="nav-btn active" id="navScan" onclick="mobileTab('scan')">
+    <button class="nav-btn active" id="mobTabScan"   onclick="mobileTab('scan')">
       <span class="nav-icon">🔍</span>Scanner
     </button>
-    <button class="nav-btn" id="navCart" onclick="mobileTab('cart')">
+    <button class="nav-btn" id="mobTabBarang" onclick="mobileTab('barang')">
+      <span class="nav-icon">📦</span>Barang
+    </button>
+    <button class="nav-btn" id="mobTabMember" onclick="mobileTab('member')">
+      <span class="nav-icon">👥</span>Member
+    </button>
+    <button class="nav-btn" id="mobTabCart"   onclick="mobileTab('cart')">
       <span class="nav-icon">🛒</span>Keranjang
-      <span class="nav-badge" id="navBadge">0</span>
+      <span class="nav-badge" id="mobCartBadge">0</span>
     </button>
   </div>
 </nav>
 
 <script>
 /* ═══════════════════════════════════
-   HELPERS
+   CONSTANTS & HELPERS
 ═══════════════════════════════════ */
-const kategoriEmoji = {
+const EMOJI_MAP = {
   'MOTOR':'🏍️','MOBIL':'🚗','ROBOT':'🤖','BONEKA':'🪆',
   'PUZZLE':'🧩','ACTION':'⚔️','BAYI':'🍼','EDUKASI':'📚',
+  'REMOTE':'🎮','MEWARNAI':'🖍️','PASIR':'🏖️',
 };
+
 function getEmoji(k) {
-  const key = (k||'').toUpperCase();
-  for (const [m,v] of Object.entries(kategoriEmoji)) if (key.includes(m)) return v;
+  const u = (k || '').toUpperCase();
+  for (const [m, v] of Object.entries(EMOJI_MAP)) if (u.includes(m)) return v;
   return '🎁';
 }
-function formatRp(n) {
-  return 'Rp\u00A0' + new Intl.NumberFormat('id-ID').format(n);
+
+function fmtRp(n) {
+  return 'Rp\u00A0' + new Intl.NumberFormat('id-ID').format(n || 0);
+}
+
+function initial(s) { return ((s || '?').trim()[0] || '?').toUpperCase(); }
+
+function safeId(kode) { return 'ci-' + kode.replace(/[^a-zA-Z0-9]/g, ''); }
+
+function escHtml(s) {
+  return String(s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;')
+    .replace(/'/g,'&#39;');
 }
 
 /* ═══════════════════════════════════
    STATE
 ═══════════════════════════════════ */
-let cart       = [];
-let scanMode   = 'scan';   // 'scan' | 'manual'
-let debounce   = null;
-let toastTimer = null;
+let cart     = [];
+let scanMode = 'scan';
+let debTimer = null;
+let toastTmr = null;
+let isMobile = () => window.innerWidth < 820;
 
-function cartTotal()     { return cart.reduce((s,i) => s + i.harga * i.qty, 0); }
-function cartItemCount() { return cart.reduce((s,i) => s + i.qty, 0); }
+let barangKategoriLoaded = false;
+let barangCurrentPage    = 1;
+let memberCurrentPage    = 1;
+
+function cartTotal()     { return cart.reduce((s, i) => s + i.harga * i.qty, 0); }
+function cartItemCount() { return cart.reduce((s, i) => s + i.qty, 0); }
 
 /* ═══════════════════════════════════
-   MODE TOGGLE
+   PAGE SWITCHING
+═══════════════════════════════════ */
+const PAGES      = ['scan', 'barang', 'member', 'cart'];
+const DESK_TABS  = { scan:'deskTabScan', barang:'deskTabBarang', member:'deskTabMember' };
+const MOB_TABS   = { scan:'mobTabScan',  barang:'mobTabBarang',  member:'mobTabMember',  cart:'mobTabCart'  };
+
+function switchPage(page) {
+  Object.entries(DESK_TABS).forEach(([p, id]) => {
+    document.getElementById(id)?.classList.toggle('active', p === page);
+  });
+
+  // Show correct page panel
+  PAGES.forEach(p => {
+    const el = document.getElementById('page' + p.charAt(0).toUpperCase() + p.slice(1));
+    if (el) el.classList.toggle('active', p === page);
+  });
+
+  if (page === 'barang') {
+    if (!barangKategoriLoaded) { loadKategoriList(); doSearchBarang(); }
+  }
+  if (page === 'member') { doSearchMember(); }
+  if (page === 'scan')   { setTimeout(() => kodeInput.focus(), 80); }
+}
+
+function mobileTab(tab) {
+  // Update mobile nav btn active state
+  Object.entries(MOB_TABS).forEach(([p, id]) => {
+    document.getElementById(id)?.classList.toggle('active', p === tab);
+  });
+
+  const colMain  = document.getElementById('colMain');
+  const colRight = document.getElementById('colRight');
+
+  if (tab === 'cart') {
+    colMain.classList.add('mob-hidden');
+    colRight.classList.remove('mob-hidden');
+  } else {
+    colMain.classList.remove('mob-hidden');
+    colRight.classList.add('mob-hidden');
+    // Show correct page
+    PAGES.forEach(p => {
+      const el = document.getElementById('page' + p.charAt(0).toUpperCase() + p.slice(1));
+      if (el) el.classList.toggle('active', p === tab);
+    });
+    if (tab === 'scan')   setTimeout(() => kodeInput.focus(), 80);
+    if (tab === 'barang') { if (!barangKategoriLoaded) { loadKategoriList(); doSearchBarang(); } }
+    if (tab === 'member') doSearchMember();
+  }
+}
+
+/* Handle resize: when switching desktop↔mobile, ensure correct visibility */
+let lastMobile = isMobile();
+window.addEventListener('resize', () => {
+  const nowMobile = isMobile();
+  if (nowMobile !== lastMobile) {
+    lastMobile = nowMobile;
+    if (!nowMobile) {
+      // Became desktop — show both columns
+      document.getElementById('colMain').classList.remove('mob-hidden');
+      document.getElementById('colRight').classList.remove('mob-hidden');
+    }
+  }
+});
+
+/* ═══════════════════════════════════
+   SCAN MODE
 ═══════════════════════════════════ */
 function setMode(mode) {
   scanMode = mode;
-  const inp        = document.getElementById('kodeInput');
-  const scanVis    = document.getElementById('scanVisual');
-  const btnTambah  = document.getElementById('btnTambah');
-  const modeDot    = document.getElementById('modeDot');
-  const modeLabel  = document.getElementById('modeLabel');
-  const hintText   = document.getElementById('hintText');
+  const inp     = document.getElementById('kodeInput');
+  const scanVis = document.getElementById('scanVisual');
+  const btnTmb  = document.getElementById('btnTambah');
 
-  // Header pill
-  document.getElementById('hdrBtnScan').classList.toggle('active',   mode==='scan');
-  document.getElementById('hdrBtnManual').classList.toggle('active', mode==='manual');
-  // Desktop inline
-  document.getElementById('deskBtnScan').classList.toggle('active',   mode==='scan');
-  document.getElementById('deskBtnManual').classList.toggle('active', mode==='manual');
+  ['btnModeScan','btnModeManual'].forEach(id => {
+    document.getElementById(id).classList.toggle('active', id.includes(mode === 'scan' ? 'Scan' : 'Manual'));
+  });
+  document.getElementById('modeDot').classList.toggle('manual', mode === 'manual');
+  document.getElementById('modeLabel').textContent = mode === 'scan' ? 'Mode Scan Aktif' : 'Mode Manual Aktif';
 
   if (mode === 'scan') {
     scanVis.classList.remove('hidden');
-    btnTambah.style.display = 'none';
+    btnTmb.style.display = 'none';
     inp.classList.remove('manual-mode');
-    inp.placeholder = 'Arahkan dan tekan cursor mouse ke sini...';
-    inp.readOnly    = false;
-    modeDot.classList.remove('manual');
-    modeLabel.textContent = 'Mode Scan Aktif';
-    hintText.textContent  = '📷 Arahkan dan tekan cursor mouse ke kolom input di atas dan scan barcode barang';
-    // In scan mode: clear & refocus so scanner can write to it
-    inp.value = '';
-    inp.focus();
-    hideToasts();
+    inp.placeholder = 'Klik di sini, lalu scan barcode...';
+    document.getElementById('hintText').textContent = '📷 Klik di kolom input di atas, lalu scan barcode barang';
   } else {
     scanVis.classList.add('hidden');
-    btnTambah.style.display = '';
+    btnTmb.style.display = '';
     inp.classList.add('manual-mode');
     inp.placeholder = 'Ketik kode barang...';
-    inp.readOnly    = false;
-    modeDot.classList.add('manual');
-    modeLabel.textContent = 'Mode Manual Aktif';
-    hintText.textContent  = '⌨️ Ketik kode barang lalu tekan Tambah atau Enter';
-    inp.value = '';
-    inp.focus();
-    hideToasts();
+    document.getElementById('hintText').textContent = '⌨️ Ketik kode barang lalu tekan Tambah atau Enter';
   }
+  inp.value = '';
+  inp.focus();
+  hideToasts();
 }
 
 /* ═══════════════════════════════════
-   INPUT HANDLING
+   INPUT
 ═══════════════════════════════════ */
-const inp = document.getElementById('kodeInput');
+const kodeInput = document.getElementById('kodeInput');
 
-inp.addEventListener('keydown', function(e) {
+kodeInput.addEventListener('keydown', e => {
   if (e.key === 'Enter') {
-    clearTimeout(debounce);
-    processKode(this.value.trim().toUpperCase());
+    clearTimeout(debTimer);
+    processKode(kodeInput.value.trim().toUpperCase());
   }
 });
 
-inp.addEventListener('input', function() {
-  if (scanMode !== 'scan') return;   // scan mode only: auto-debounce
-  clearTimeout(debounce);
-  const val = this.value.trim();
-  if (val.length >= 3) {
-    debounce = setTimeout(() => processKode(val.toUpperCase()), 280);
-  }
+kodeInput.addEventListener('input', () => {
+  if (scanMode !== 'scan') return;
+  clearTimeout(debTimer);
+  const val = kodeInput.value.trim();
+  if (val.length >= 3) debTimer = setTimeout(() => processKode(val.toUpperCase()), 280);
 });
 
 function submitManual() {
-  const val = inp.value.trim().toUpperCase();
-  if (!val) { inp.focus(); return; }
+  const val = kodeInput.value.trim().toUpperCase();
+  if (!val) { kodeInput.focus(); return; }
   processKode(val);
 }
 
-/* ═══════════════════════════════════
-   CORE: fetch + auto-add to cart
-═══════════════════════════════════ */
 async function processKode(kode) {
   if (!kode) return;
   hideToasts();
-
   try {
-    const res  = await fetch(`/api/cek-harga/${encodeURIComponent(kode)}`);
+    const res  = await fetch('/api/cek-harga/' + encodeURIComponent(kode));
     const json = await res.json();
-
-    if (json.success) {
-      addToCartAuto(json.data);
-      showSuccessToast(json.data);
-    } else {
-      showErrorToast(json.message || `Kode "${kode}" tidak ditemukan`);
-    }
+    if (json.success) { addToCartAuto(json.data); showToastSuccess(json.data); }
+    else              showToastError(json.message || 'Kode "' + kode + '" tidak ditemukan');
   } catch {
-    showErrorToast('Tidak dapat terhubung ke server');
+    showToastError('Tidak dapat terhubung ke server');
   }
-
-  // Clear input & refocus
-  setTimeout(() => {
-    inp.value = '';
-    if (scanMode === 'scan') inp.focus();
-    else                     inp.focus();
-  }, scanMode === 'scan' ? 60 : 0);
+  setTimeout(() => { kodeInput.value = ''; kodeInput.focus(); }, scanMode === 'scan' ? 60 : 0);
 }
 
 /* ═══════════════════════════════════
@@ -1722,98 +1099,70 @@ async function processKode(kode) {
 ═══════════════════════════════════ */
 function addToCartAuto(data) {
   const ex = cart.find(i => i.kode === data.kode);
-  if (ex) {
-    ex.qty++;
-  } else {
-    cart.push({
-      kode: data.kode, nama: data.barang, kategori: data.kategori,
-      harga: data.harga_jual, isi: data.isi, qty: 1
-    });
-  }
+  if (ex) ex.qty++;
+  else cart.push({ kode: data.kode, nama: data.barang, kategori: data.kategori, harga: data.harga_jual, isi: data.isi, qty: 1 });
   updateBadge();
-  renderCart(data.kode);   // pass kode to flash that row
+  renderCart(data.kode);
+}
+
+function addToCartFromBarang(kode, nama, kategori, harga, isi) {
+  const data = { kode, barang: nama, kategori, harga_jual: harga, isi };
+  addToCartAuto(data);
+  showToastSuccess(data);
+  if (isMobile()) mobileTab('cart');
 }
 
 function changeQty(kode, delta) {
   const item = cart.find(i => i.kode === kode);
   if (!item) return;
-  const newQty = item.qty + delta;
-  if (newQty <= 0) {
-    cart = cart.filter(i => i.kode !== kode);
-    updateBadge();
-    renderCart();
-    return;
-  }
-  item.qty = newQty;
+  const nq = item.qty + delta;
+  if (nq <= 0) { cart = cart.filter(i => i.kode !== kode); updateBadge(); renderCart(); return; }
+  item.qty = nq;
   updateBadge();
-  // Patch DOM in-place: update input value, harga, subtotal, total — no full re-render
-  patchCartRow(kode);
+  patchRow(kode);
   updateTotals();
 }
 
-function setQty(inputEl) {
-  const kode = inputEl.dataset.kode;
+function setQty(el) {
+  const kode = el.dataset.kode;
   const item = cart.find(i => i.kode === kode);
   if (!item) return;
-
-  const raw = parseInt(inputEl.value, 10);
-
-  if (isNaN(raw) || raw < 1) {
-    inputEl.classList.add('invalid');
-    inputEl.value = item.qty;   // revert
-    setTimeout(() => {
-      inputEl.classList.remove('invalid');
-    }, 800);
+  const v = parseInt(el.value, 10);
+  if (isNaN(v) || v < 1) {
+    el.classList.add('invalid');
+    el.value = item.qty;
+    setTimeout(() => el.classList.remove('invalid'), 800);
     return;
   }
-
-  item.qty = raw;
-  inputEl.classList.remove('invalid');
-  updateBadge();
-  patchCartRow(kode);
-  updateTotals();
+  item.qty = v;
+  el.classList.remove('invalid');
+  updateBadge(); patchRow(kode); updateTotals();
 }
 
-function patchCartRow(kode) {
-  const item  = cart.find(i => i.kode === kode);
-  const safeId = 'ci-' + kode.replace(/[^a-zA-Z0-9]/g,'');
-  const row   = document.getElementById(safeId);
+function patchRow(kode) {
+  const item = cart.find(i => i.kode === kode);
+  const row  = document.getElementById(safeId(kode));
   if (!row || !item) return;
-
-  // Sync input value in case changeQty called it
-  const qtyInput = row.querySelector('.qty-input');
-  if (qtyInput && parseInt(qtyInput.value) !== item.qty) qtyInput.value = item.qty;
-
-  // Update harga & subtotal labels
-  row.querySelector('.ci-harga').textContent    = formatRp(item.harga * item.qty);
-  row.querySelector('.ci-subtotal').textContent = item.qty + '×' + formatRp(item.harga);
-
-  // Flash row
-  row.classList.remove('flash');
-  void row.offsetWidth;
-  row.classList.add('flash');
+  const qi = row.querySelector('.qty-input');
+  if (qi && parseInt(qi.value) !== item.qty) qi.value = item.qty;
+  row.querySelector('.ci-price').textContent    = fmtRp(item.harga * item.qty);
+  row.querySelector('.ci-subtotal').textContent = item.qty + '×' + fmtRp(item.harga);
+  row.classList.remove('flash'); void row.offsetWidth; row.classList.add('flash');
 }
 
 function updateTotals() {
   document.getElementById('totalItem').textContent  = cartItemCount() + ' item';
-  document.getElementById('grandTotal').textContent = formatRp(cartTotal());
-  document.getElementById('kCount').textContent     = cartItemCount();
+  document.getElementById('grandTotal').textContent = fmtRp(cartTotal());
+  document.getElementById('cartCount').textContent  = cartItemCount();
 }
 
-function clearCart() {
-  cart = [];
-  updateBadge();
-  renderCart();
-}
+function clearCart() { cart = []; updateBadge(); renderCart(); }
 
 function updateBadge() {
   const n = cartItemCount();
-  ['navBadge'].forEach(id => {
-    const b = document.getElementById(id);
-    b.textContent = n;
-    b.classList.toggle('show', n > 0);
-  });
-  document.getElementById('kCount').textContent = n;
+  const b = document.getElementById('mobCartBadge');
+  if (b) { b.textContent = n; b.classList.toggle('show', n > 0); }
+  document.getElementById('cartCount').textContent = n;
 }
 
 function renderCart(flashKode) {
@@ -1825,102 +1174,364 @@ function renderCart(flashKode) {
       <div class="cart-empty">
         <div class="cart-empty-emoji">🛒</div>
         <div class="cart-empty-text">Keranjang Kosong</div>
-        <div class="cart-empty-sub">Scan atau ketik kode barang untuk menambah</div>
+        <div class="cart-empty-sub">Scan atau ketik kode barang untuk menambah item</div>
       </div>`;
     footer.style.display = 'none';
     return;
   }
 
   footer.style.display = 'block';
-  body.innerHTML = `<div class="cart-list">${
-    cart.map(item => `
-      <div class="cart-item" id="ci-${item.kode.replace(/[^a-zA-Z0-9]/g,'')}">
-        <div class="ci-emoji">${getEmoji(item.kategori)}</div>
-        <div class="ci-info">
-          <div class="ci-nama">${item.nama}</div>
-          <div class="ci-sub">${formatRp(item.harga)} / ${item.isi}</div>
-        </div>
-        <div class="qty-ctrl">
-          <button class="qty-btn minus" onclick="changeQty('${item.kode}',-1)">−</button>
-          <input class="qty-input" type="number" min="1" value="${item.qty}" data-kode="${item.kode}" onchange="setQty(this)" onfocus="this.select()">
-          <button class="qty-btn"       onclick="changeQty('${item.kode}',1)">+</button>
-        </div>
-        <div class="ci-harga-col">
-          <div class="ci-harga">${formatRp(item.harga * item.qty)}</div>
-          <div class="ci-subtotal">${item.qty}×${formatRp(item.harga)}</div>
-        </div>
-      </div>`).join('')
-  }</div>`;
+  body.innerHTML = cart.map(item => `
+    <div class="cart-item" id="${escHtml(safeId(item.kode))}">
+      <div class="ci-emoji">${getEmoji(item.kategori)}</div>
+      <div class="ci-info">
+        <div class="ci-nama">${escHtml(item.nama)}</div>
+        <div class="ci-sub">${fmtRp(item.harga)} / ${escHtml(item.isi)}</div>
+      </div>
+      <div class="qty-ctrl">
+        <button class="qty-btn minus" onclick="changeQty('${escHtml(item.kode)}',-1)">−</button>
+        <input class="qty-input" type="number" min="1" value="${item.qty}"
+          data-kode="${escHtml(item.kode)}" onchange="setQty(this)" onfocus="this.select()">
+        <button class="qty-btn" onclick="changeQty('${escHtml(item.kode)}',1)">+</button>
+      </div>
+      <div class="ci-price-col">
+        <div class="ci-price">${fmtRp(item.harga * item.qty)}</div>
+        <div class="ci-subtotal">${item.qty}×${fmtRp(item.harga)}</div>
+      </div>
+    </div>`).join('');
 
-  // Flash the row that just changed
   if (flashKode) {
-    const safeId = 'ci-' + flashKode.replace(/[^a-zA-Z0-9]/g,'');
-    const row = document.getElementById(safeId);
-    if (row) {
-      row.classList.remove('flash');
-      void row.offsetWidth;
-      row.classList.add('flash');
-    }
+    const row = document.getElementById(safeId(flashKode));
+    if (row) { row.classList.remove('flash'); void row.offsetWidth; row.classList.add('flash'); }
   }
-
   updateTotals();
 }
 
 /* ═══════════════════════════════════
    TOASTS
 ═══════════════════════════════════ */
-function showSuccessToast(data) {
-  clearTimeout(toastTimer);
-  const ex = cart.find(i => i.kode === data.kode);
+function showToastSuccess(data) {
+  clearTimeout(toastTmr);
+  const ex  = cart.find(i => i.kode === data.kode);
   const qty = ex ? ex.qty : 1;
-
-  document.getElementById('lstEmoji').textContent  = getEmoji(data.kategori);
-  document.getElementById('lstNama').textContent   = data.barang;
-  document.getElementById('lstHarga').textContent  = formatRp(data.harga_jual) + ' / ' + data.isi;
-  document.getElementById('lstQtyBadge').textContent = '×' + qty;
-
-  document.getElementById('lastScanToast').classList.add('show');
-  document.getElementById('errorToast').classList.remove('show');
-
-  // Auto-hide after 4s in scan mode, keep in manual
-  if (scanMode === 'scan') toastTimer = setTimeout(hideToasts, 4000);
+  document.getElementById('toastEmoji').textContent = getEmoji(data.kategori);
+  document.getElementById('toastNama').textContent  = data.barang;
+  document.getElementById('toastHarga').textContent = fmtRp(data.harga_jual) + ' / ' + data.isi;
+  document.getElementById('toastQty').textContent   = '×' + qty;
+  document.getElementById('toastSuccess').classList.add('show');
+  document.getElementById('toastError').classList.remove('show');
+  if (scanMode === 'scan') toastTmr = setTimeout(hideToasts, 4000);
 }
 
-function showErrorToast(msg) {
-  clearTimeout(toastTimer);
-  document.getElementById('errorMsg').textContent = msg;
-  document.getElementById('errorToast').classList.add('show');
-  document.getElementById('lastScanToast').classList.remove('show');
-  toastTimer = setTimeout(hideToasts, 4000);
+function showToastError(msg) {
+  clearTimeout(toastTmr);
+  document.getElementById('toastErrMsg').textContent = msg;
+  document.getElementById('toastError').classList.add('show');
+  document.getElementById('toastSuccess').classList.remove('show');
+  toastTmr = setTimeout(hideToasts, 4000);
 }
 
 function hideToasts() {
-  document.getElementById('lastScanToast').classList.remove('show');
-  document.getElementById('errorToast').classList.remove('show');
+  document.getElementById('toastSuccess').classList.remove('show');
+  document.getElementById('toastError').classList.remove('show');
 }
 
 /* ═══════════════════════════════════
-   MOBILE TAB
+   BARANG SEARCH
 ═══════════════════════════════════ */
-function mobileTab(tab) {
-  const left  = document.getElementById('colLeft');
-  const right = document.getElementById('colRight');
-  document.getElementById('navScan').classList.toggle('active', tab==='scan');
-  document.getElementById('navCart').classList.toggle('active', tab==='cart');
+async function loadKategoriList() {
+  // Panggil API tanpa q — server akan return require_search=true
+  // tapi kategori_list tetap dikembalikan untuk isi dropdown
+  try {
+    const res  = await fetch('/api/barang?limit=10&page=1');
+    const json = await res.json();
+    if (!json.kategori_list) return;
+    const sel = document.getElementById('barangKategori');
+    while (sel.options.length > 1) sel.remove(1);
+    json.kategori_list.forEach(k => {
+      const opt = document.createElement('option');
+      opt.value = k; opt.textContent = k;
+      sel.appendChild(opt);
+    });
+    barangKategoriLoaded = true;
+  } catch {}
+}
 
-  if (tab === 'scan') {
-    left.classList.remove('mob-hidden');
-    right.classList.add('mob-hidden');
-    setTimeout(() => inp.focus(), 80);
-  } else {
-    left.classList.add('mob-hidden');
-    right.classList.remove('mob-hidden');
+async function doSearchBarang(page) {
+  barangCurrentPage = page || 1;
+  const q        = document.getElementById('barangSearch').value.trim();
+  const kategori = document.getElementById('barangKategori').value;
+  const listEl   = document.getElementById('barangList');
+  const metaEl   = document.getElementById('barangMeta');
+  const pagEl    = document.getElementById('barangPagination');
+
+  // Client-side guard: min 2 char atau kategori dipilih
+  if (q.length < 2 && !kategori) {
+    listEl.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-emoji">🔍</div>
+        <div class="empty-text">Ketik nama atau kode barang</div>
+        <div class="empty-sub">Minimal 2 karakter, atau pilih kategori di atas</div>
+      </div>`;
+    metaEl.classList.remove('show');
+    pagEl.innerHTML = '';
+    return;
+  }
+
+  listEl.innerHTML = `<div class="loading-wrap"><div class="spinner"></div><div class="loading-txt">Memuat data...</div></div>`;
+  metaEl.classList.remove('show');
+  pagEl.innerHTML = '';
+
+  try {
+    const p = new URLSearchParams({ page: barangCurrentPage, limit: 30 });
+    if (q)        p.set('q', q);
+    if (kategori) p.set('kategori', kategori);
+
+    const res  = await fetch('/api/barang?' + p);
+    const json = await res.json();
+
+    // Update kategori dropdown jika ada data baru
+    if (json.kategori_list && json.kategori_list.length && !barangKategoriLoaded) {
+      const sel = document.getElementById('barangKategori');
+      while (sel.options.length > 1) sel.remove(1);
+      json.kategori_list.forEach(k => {
+        const opt = document.createElement('option');
+        opt.value = k; opt.textContent = k;
+        sel.appendChild(opt);
+      });
+      barangKategoriLoaded = true;
+    }
+
+    if (!json.success) {
+      listEl.innerHTML = `<div class="empty-state"><div class="empty-emoji">⚠️</div><div class="empty-text">${escHtml(json.message)}</div></div>`;
+      return;
+    }
+
+    // require_search dari server (seharusnya sudah dicegah di client, tapi jaga-jaga)
+    if (json.require_search) {
+      listEl.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-emoji">🔍</div>
+          <div class="empty-text">Ketik nama atau kode barang</div>
+          <div class="empty-sub">${escHtml(json.message)}</div>
+        </div>`;
+      return;
+    }
+
+    metaEl.innerHTML = `<span>Menampilkan <b>${json.data.length}</b> dari <b>${json.total}</b> barang</span><span>Hal ${json.page}/${json.pages}</span>`;
+    metaEl.classList.add('show');
+
+    if (!json.data.length) {
+      listEl.innerHTML = `<div class="empty-state"><div class="empty-emoji">📦</div><div class="empty-text">Tidak ada barang ditemukan</div><div class="empty-sub">Coba kata kunci yang dimulai berbeda, misal: "BON" untuk Boneka</div></div>`;
+      return;
+    }
+
+    listEl.innerHTML = `
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th style="width:28px"></th>
+              <th>Nama Barang</th>
+              <th class="col-right">Kode</th>
+              <th>Isi</th>
+              <th>Kategori</th>
+              <th class="col-right">Harga</th>
+              <th class="col-center">+</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${json.data.map((b, i) => `
+              <tr onclick="toggleTblDetail('tbd-${i}', this)">
+                <td class="col-center" style="font-size:18px;padding-right:4px">${getEmoji(b.kategori)}</td>
+                <td class="col-nama">${escHtml(b.barang)}</td>
+                <td class="col-kode"><b>${escHtml(b.kode)}</b></td>
+                <td style="font-size:12px;color:var(--gray);white-space:nowrap">${escHtml(b.isi)}</td>
+                <td style="font-size:12px;color:var(--gray)">${escHtml(b.kategori||'—')}</td>
+                <td class="col-harga">${fmtRp(b.harga_jual)}</td>
+                <td class="col-aksi">
+                  <button class="btn-tbl-add" title="Tambah ke keranjang"
+                    onclick="event.stopPropagation();addToCartFromBarang(
+                      '${escHtml(b.kode)}',
+                      '${escHtml(b.barang).replace(/'/g,"\\'").replace(/\n/g,' ')}',
+                      '${escHtml(b.kategori||'')}',
+                      ${b.harga_jual},
+                      '${escHtml(b.isi).replace(/'/g,"\\'")}'
+                    )">+</button>
+                </td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>`;
+
+    renderPagination('barang', json.page, json.pages);
+  } catch {
+    listEl.innerHTML = `<div class="empty-state"><div class="empty-emoji">❌</div><div class="empty-text">Gagal memuat data</div><div class="empty-sub">Periksa koneksi server</div></div>`;
   }
 }
 
-/* init */
+/* ═══════════════════════════════════
+   MEMBER SEARCH
+═══════════════════════════════════ */
+async function doSearchMember(page) {
+  memberCurrentPage = page || 1;
+  const q      = document.getElementById('memberSearch').value.trim();
+  const listEl = document.getElementById('memberList');
+  const metaEl = document.getElementById('memberMeta');
+  const pagEl  = document.getElementById('memberPagination');
+
+  // Client-side guard
+  if (q.length < 2) {
+    listEl.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-emoji">🔍</div>
+        <div class="empty-text">Ketik nama atau kota member</div>
+        <div class="empty-sub">Minimal 2 karakter untuk mulai pencarian</div>
+      </div>`;
+    metaEl.classList.remove('show');
+    pagEl.innerHTML = '';
+    return;
+  }
+
+  listEl.innerHTML = `<div class="loading-wrap"><div class="spinner"></div><div class="loading-txt">Memuat data...</div></div>`;
+  metaEl.classList.remove('show');
+  pagEl.innerHTML = '';
+
+  try {
+    const p = new URLSearchParams({ page: memberCurrentPage, limit: 30 });
+    if (q) p.set('q', q);
+
+    const res  = await fetch('/api/member?' + p);
+    const json = await res.json();
+
+    if (!json.success) {
+      listEl.innerHTML = `<div class="empty-state"><div class="empty-emoji">⚠️</div><div class="empty-text">${escHtml(json.message)}</div></div>`;
+      return;
+    }
+
+    if (json.require_search) {
+      listEl.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-emoji">🔍</div>
+          <div class="empty-text">Ketik nama atau kota member</div>
+          <div class="empty-sub">${escHtml(json.message)}</div>
+        </div>`;
+      return;
+    }
+
+    metaEl.innerHTML = `<span>Menampilkan <b>${json.data.length}</b> dari <b>${json.total}</b> member aktif</span><span>Hal ${json.page}/${json.pages}</span>`;
+    metaEl.classList.add('show');
+
+    if (!json.data.length) {
+      listEl.innerHTML = `<div class="empty-state"><div class="empty-emoji">👥</div><div class="empty-text">Tidak ada member ditemukan</div><div class="empty-sub">Coba nama atau kota yang dimulai dengan kata lain</div></div>`;
+      return;
+    }
+
+    const renderMasked = (num) => {
+      if (!num) return '—';
+      const stars = num.replace(/\*/g, '•');
+      const last4 = stars.slice(-4);
+      const head  = stars.slice(0, -4);
+      return `<span class="phone-stars">${escHtml(head)}</span><span class="phone-last4">${escHtml(last4)}</span>`;
+    };
+
+    listEl.innerHTML = `
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th>Nama Member</th>
+              <th>Kota</th>
+              <th class="col-right">Kode</th>
+              <th>HP</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${json.data.map((m, i) => {
+              const eid = 'mex-' + i;
+              return `
+                <tr onclick="toggleMemberExpand('${eid}', this)">
+                  <td class="col-nama">${escHtml(m.customer || '—')}</td>
+                  <td style="font-size:12px;color:var(--gray)">${escHtml(m.kota || '—')}</td>
+                  <td class="col-kode"><b>${escHtml(m.kode)}</b></td>
+                  <td class="col-hp">${m.hp ? renderMasked(m.hp) : (m.telepon ? renderMasked(m.telepon) : '<span style="color:var(--gray)">—</span>')}</td>
+                </tr>
+                <tr class="member-expand-row" id="${eid}">
+                  <td colspan="4">
+                    <div class="member-expand-chips">
+                      ${m.hp      ? `<div class="detail-chip">📱 <span class="col-hp">${renderMasked(m.hp)}</span></div>` : ''}
+                      ${m.telepon ? `<div class="detail-chip">📞 <span class="col-hp">${renderMasked(m.telepon)}</span></div>` : ''}
+                      ${m.fax     ? `<div class="detail-chip">Fax: <span class="col-hp">${renderMasked(m.fax)}</span></div>` : ''}
+                      ${m.alamat  ? `<div class="detail-chip" style="flex-basis:100%">🏠 ${escHtml(m.alamat)}</div>` : ''}
+                      ${m.keterangan ? `<div class="detail-chip" style="flex-basis:100%">📝 ${escHtml(m.keterangan)}</div>` : ''}
+                    </div>
+                  </td>
+                </tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+      </div>`;
+
+    renderPagination('member', json.page, json.pages);
+  } catch {
+    listEl.innerHTML = `<div class="empty-state"><div class="empty-emoji">❌</div><div class="empty-text">Gagal memuat data</div></div>`;
+  }
+}
+
+/* ═══════════════════════════════════
+   SHARED HELPERS
+═══════════════════════════════════ */
+function toggleTblDetail(id, tr) {
+  // Tidak dipakai lagi untuk barang (expand dihapus), reserved for future use
+}
+
+function toggleMemberExpand(id, tr) {
+  const row = document.getElementById(id);
+  if (!row) return;
+  const isOpen = row.classList.contains('open');
+  // Tutup semua expand rows
+  document.querySelectorAll('.member-expand-row.open').forEach(r => {
+    r.classList.remove('open');
+    const prev = r.previousElementSibling;
+    if (prev) prev.classList.remove('row-expanded');
+  });
+  if (!isOpen) {
+    row.classList.add('open');
+    tr.classList.add('row-expanded');
+  }
+}
+
+function renderPagination(type, current, total) {
+  if (total <= 1) return;
+  const elId = type + 'Pagination';
+  const fn   = type === 'barang' ? 'doSearchBarang' : 'doSearchMember';
+  let html = `<div class="pagination">`;
+  html += `<button class="page-btn" onclick="${fn}(${current-1})" ${current===1?'disabled':''}>←</button>`;
+
+  for (let p = 1; p <= total; p++) {
+    const far = Math.abs(p - current) > 2;
+    const edge = p === 1 || p === total;
+    if (!edge && far) {
+      if (p === 2 || p === total - 1) html += `<span class="page-ellipsis">…</span>`;
+      continue;
+    }
+    html += `<button class="page-btn ${p===current?'active':''}" onclick="${fn}(${p})">${p}</button>`;
+  }
+
+  html += `<button class="page-btn" onclick="${fn}(${current+1})" ${current===total?'disabled':''}>→</button>`;
+  html += `</div>`;
+  document.getElementById(elId).innerHTML = html;
+}
+
+/* ═══════════════════════════════════
+   INIT
+═══════════════════════════════════ */
 renderCart();
 setMode('scan');
+// On mobile: hide right col initially
+if (isMobile()) {
+  document.getElementById('colRight').classList.add('mob-hidden');
+}
 </script>
 </body>
 </html>
