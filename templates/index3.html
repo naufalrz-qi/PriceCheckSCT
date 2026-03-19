@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <title>Cek Harga — Sukses Crown Toys</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow:   #FFD23F;
+      --orange:   #FF6B35;
+      --red:      #EF233C;
+      --blue:     #3A86FF;
+      --blue-dk:  #2563EB;
+      --green:    #06D6A0;
+      --green-dk: #059669;
+      --white:    #FFFFFF;
+      --cream:    #FFFBF0;
+      --gray-l:   #F3F4F6;
+      --gray:     #6B7280;
+      --dark:     #1F2937;
+      --safe-b:   env(safe-area-inset-bottom, 0px);
+      --font-d:   'Fredoka One', cursive;
+      --font-b:   'Nunito', sans-serif;
+    }
+
+    html { height: 100%; overscroll-behavior: none; }
+
+    body {
+      background: var(--cream);
+      font-family: var(--font-b);
+      min-height: 100%;
+      display: flex; flex-direction: column; align-items: center;
+      overflow-x: hidden;
+      padding-bottom: calc(16px + var(--safe-b));
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: radial-gradient(circle, #FFD23F44 2px, transparent 2px);
+      background-size: 28px 28px;
+      pointer-events: none; z-index: 0;
+    }
+
+    .wrap { width: 100%; max-width: 1100px; padding: 0 14px; position: relative; z-index: 10; }
+
+    /* ── HEADER ── */
+    header { width: 100%; max-width: 1100px; padding: 14px 14px 0; position: relative; z-index: 10; }
+
+    .header-banner {
+      background: var(--blue); border-radius: 20px 20px 0 0;
+      padding: 14px 20px 12px; position: relative; overflow: hidden;
+      box-shadow: 0 5px 0 var(--blue-dk);
+      display: flex; align-items: center; gap: 14px;
+    }
+    .header-banner::before {
+      content: '🎮 🧸 🚀 🎯 🎪 🏎️ 🎠 🎲';
+      position: absolute; bottom: -6px; left: -10px;
+      font-size: 18px; opacity: 0.1; letter-spacing: 4px; white-space: nowrap;
+    }
+    .hdr-emoji { font-size: 32px; animation: bounce 2.2s ease-in-out infinite; flex-shrink: 0; }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+    .store-title    { font-family: var(--font-d); font-size: clamp(16px, 4vw, 28px); color: var(--white); line-height: 1; }
+    .store-subtitle { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.7); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 3px; }
+
+    /* mode pill in header */
+    .mode-pill {
+      margin-left: auto; flex-shrink: 0;
+      display: flex; align-items: center;
+      background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.35);
+      border-radius: 100px; padding: 3px; gap: 2px;
+    }
+    .mode-pill-btn {
+      background: none; border: none; cursor: pointer;
+      font-family: var(--font-d); font-size: 11px; color: rgba(255,255,255,0.6);
+      padding: 5px 10px; border-radius: 100px;
+      transition: all 0.18s; white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .mode-pill-btn.active {
+      background: var(--white); color: var(--blue-dk);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .color-strip { display: flex; height: 7px; border-radius: 0 0 8px 8px; overflow: hidden; }
+    .color-strip span { flex: 1; }
+    .cs1{background:#EF233C;}.cs2{background:#FF6B35;}.cs3{background:#FFD23F;}
+    .cs4{background:#06D6A0;}.cs5{background:#3A86FF;}.cs6{background:#9B5DE5;}.cs7{background:#F72585;}
+
+    /* ── MAIN LAYOUT ── */
+    .main-layout {
+      width: 100%; max-width: 1100px;
+      padding: 14px 14px 0;
+      position: relative; z-index: 10;
+      display: flex; gap: 16px; flex-direction: column;
+    }
+
+    @media (min-width: 820px) {
+      .main-layout { flex-direction: row; align-items: flex-start; }
+      .col-left    { flex: 1; min-width: 0; }
+      .col-right   { width: 380px; flex-shrink: 0; position: sticky; top: 14px; }
+    }
+
+    /* ── CARD BASE ── */
+    .card {
+      background: var(--white);
+      border: 2.5px solid var(--dark);
+      border-radius: 20px;
+      box-shadow: 5px 5px 0 var(--dark);
+      overflow: hidden;
+    }
+
+    @keyframes popIn  { from{opacity:0;transform:scale(0.9) translateY(8px)} to{opacity:1;transform:scale(1) translateY(0)} }
+    @keyframes slideIn{ from{opacity:0;transform:translateX(-8px)} to{opacity:1;transform:translateX(0)} }
+    @keyframes flashGreen { 0%,100%{background:var(--white)} 30%{background:#D1FAF0} }
+    @keyframes spin   { to{transform:rotate(360deg)} }
+
+    /* ── SCAN MODE INDICATOR ── */
+    .scan-mode-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 16px 9px;
+      border-bottom: 2px dashed #E5E7EB;
+      gap: 10px;
+    }
+    .scan-mode-label {
+      font-family: var(--font-d); font-size: 13px;
+      display: flex; align-items: center; gap: 7px;
+    }
+    .scan-mode-dot {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--green); box-shadow: 0 0 0 3px rgba(6,214,160,0.25);
+      animation: pulse-dot 1.5s ease-in-out infinite; flex-shrink: 0;
+    }
+    .scan-mode-dot.manual { background: var(--orange); box-shadow: 0 0 0 3px rgba(255,107,53,0.25); }
+    @keyframes pulse-dot { 0%,100%{transform:scale(1)} 50%{transform:scale(1.4)} }
+
+    .inline-mode-toggle { display: none; }
+    @media (min-width: 820px) {
+      .inline-mode-toggle {
+        display: flex; align-items: center;
+        background: var(--gray-l); border: 2px solid #E5E7EB;
+        border-radius: 100px; padding: 3px; gap: 2px;
+      }
+      .imt-btn {
+        background: none; border: none; cursor: pointer;
+        font-family: var(--font-d); font-size: 12px; color: var(--gray);
+        padding: 5px 12px; border-radius: 100px; transition: all 0.15s; white-space: nowrap;
+        display: flex; align-items: center; gap: 5px;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .imt-btn.active { background: var(--dark); color: var(--white); box-shadow: 2px 2px 0 rgba(0,0,0,0.2); }
+    }
+
+    /* ── SCANNER BODY ── */
+    .scanner-body { padding: 12px 14px 14px; }
+
+    /* scan visual */
+    .scan-visual {
+      height: 72px; background: #1a1f2e;
+      border: 2.5px solid var(--dark); border-radius: 14px;
+      position: relative; overflow: hidden; margin-bottom: 12px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.4);
+    }
+    .scan-visual.hidden { display: none; }
+    .barcode-svg {
+      height: 50px; display: flex; align-items: flex-end;
+      padding: 0 14px; position: relative; z-index: 1; flex-shrink: 0;
+    }
+    .bc-bar { background: var(--white); border-radius: 1px; flex-shrink: 0; }
+    .scan-ready-txt {
+      position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%);
+      font-family: var(--font-d); font-size: 10px; color: #fff;
+      white-space: nowrap; z-index: 5; letter-spacing: 0.1em;
+      background: rgba(0,0,0,0.55); padding: 2px 10px; border-radius: 20px;
+    }
+    .scan-line {
+      position: absolute; top: 0; left: -4px; width: 4px; height: 100%;
+      background: linear-gradient(180deg, transparent 0%, rgba(255,80,80,0.9) 45%, #ff3333 50%, rgba(255,80,80,0.9) 55%, transparent 100%);
+      box-shadow: 0 0 8px 2px rgba(255,60,60,0.6);
+      animation: scanMove 2s ease-in-out infinite; border-radius: 2px; z-index: 3;
+    }
+    .scan-visual.paused .scan-line { animation-play-state: paused; opacity: 0; }
+    @keyframes scanMove { 0%{left:-4px;opacity:0} 6%{opacity:1} 94%{opacity:1} 100%{left:100%;opacity:0} }
+    .scan-corner {
+      position: absolute; width: 12px; height: 12px;
+      border-color: var(--orange); border-style: solid; z-index: 4;
+    }
+    .sc-tl { top:5px;  left:5px;  border-width: 2px 0 0 2px; border-radius: 3px 0 0 0; }
+    .sc-tr { top:5px;  right:5px; border-width: 2px 2px 0 0; border-radius: 0 3px 0 0; }
+    .sc-bl { bottom:5px; left:5px;  border-width: 0 0 2px 2px; border-radius: 0 0 0 3px; }
+    .sc-br { bottom:5px; right:5px; border-width: 0 2px 2px 0; border-radius: 0 0 3px 0; }
+
+    .input-row { display: flex; gap: 8px; }
+
+    .kode-input {
+      flex: 1; background: var(--gray-l); border: 2px solid #E5E7EB; border-radius: 14px;
+      padding: 13px 14px;
+      font-family: var(--font-b); font-weight: 800; color: var(--dark);
+      font-size: max(16px, 1em);
+      outline: none; transition: all 0.18s;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      min-width: 0; /* prevent overflow */
+    }
+    .kode-input::placeholder { font-size: 12px; font-weight: 600; color: #9CA3AF; text-transform: none; letter-spacing: 0; }
+    .kode-input:focus { border-color: var(--blue); background: #EFF6FF; box-shadow: 0 0 0 3px rgba(58,134,255,0.18); }
+    .kode-input.manual-mode { border-color: var(--orange); background: #FFF7F0; }
+    .kode-input.manual-mode:focus { border-color: var(--orange); background: #FFF7F0; box-shadow: 0 0 0 3px rgba(255,107,53,0.18); }
+
+    .btn-tambah {
+      background: var(--orange); color: var(--white); border: 2.5px solid var(--dark);
+      border-radius: 14px; padding: 13px 14px; font-family: var(--font-d); font-size: 14px;
+      cursor: pointer; white-space: nowrap; box-shadow: 4px 4px 0 var(--dark);
+      min-height: 50px; min-width: 80px;
+      -webkit-tap-highlight-color: transparent; transition: all 0.13s; flex-shrink: 0;
+    }
+    .btn-tambah:active { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--dark); }
+
+    .hint-text {
+      margin-top: 8px; font-size: 11px; font-weight: 700; color: var(--gray); text-align: center;
+      line-height: 1.4;
+    }
+
+    /* ── TOASTS ── */
+    .last-scan-toast {
+      margin: 0 14px 12px;
+      background: #D1FAF0; border: 2px solid var(--green-dk);
+      border-radius: 14px; padding: 10px 12px;
+      display: none; align-items: center; gap: 8px;
+      animation: popIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .last-scan-toast.show { display: flex; }
+    .lst-emoji { font-size: 20px; flex-shrink: 0; }
+    .lst-info  { flex: 1; min-width: 0; }
+    .lst-nama  { font-family: var(--font-d); font-size: 13px; color: var(--dark);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .lst-harga { font-size: 11px; font-weight: 800; color: var(--green-dk); }
+    .lst-qty-badge {
+      background: var(--green); color: var(--white);
+      font-family: var(--font-d); font-size: 12px;
+      padding: 3px 9px; border-radius: 100px;
+      border: 2px solid var(--dark); white-space: nowrap; flex-shrink: 0;
+      box-shadow: 2px 2px 0 var(--dark);
+    }
+    .error-toast {
+      margin: 0 14px 12px;
+      background: #FEE2E2; border: 2px solid var(--red);
+      border-radius: 14px; padding: 10px 12px;
+      display: none; align-items: center; gap: 8px;
+      animation: popIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .error-toast.show { display: flex; }
+    .et-emoji { font-size: 20px; flex-shrink: 0; }
+    .et-msg   { font-family: var(--font-d); font-size: 13px; color: var(--red); }
+
+    /* ── KERANJANG CARD ── */
+    .keranjang-header {
+      background: var(--green); padding: 13px 16px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 2.5px solid var(--dark);
+    }
+    .keranjang-title { font-family: var(--font-d); font-size: 16px; color: var(--white); display: flex; align-items: center; gap: 6px; }
+    .k-count { background: rgba(255,255,255,0.3); border-radius: 100px; padding: 1px 8px; font-size: 13px; }
+    .btn-clear-k {
+      background: rgba(255,255,255,0.2); color: var(--white);
+      border: 2px solid rgba(255,255,255,0.45); border-radius: 10px;
+      padding: 5px 10px; font-family: var(--font-d); font-size: 12px;
+      cursor: pointer; -webkit-tap-highlight-color: transparent; white-space: nowrap;
+    }
+    .btn-clear-k:active { background: rgba(255,255,255,0.4); }
+
+    /* empty */
+    .cart-empty { padding: 30px 16px; text-align: center; }
+    .cart-empty-emoji { font-size: 40px; margin-bottom: 8px; }
+    .cart-empty-text  { font-family: var(--font-d); font-size: 15px; color: var(--gray); margin-bottom: 4px; }
+    .cart-empty-sub   { font-size: 11px; font-weight: 700; color: #9CA3AF; }
+
+    /* cart items — default (mobile-first) */
+    .cart-item {
+      display: grid;
+      grid-template-columns: 28px 1fr auto;
+      grid-template-rows: auto auto;
+      align-items: center; gap: 6px 8px;
+      padding: 10px 14px;
+      border-bottom: 2px dashed #E5E7EB;
+      transition: background 0.2s;
+    }
+    .cart-item:last-child { border-bottom: none; }
+    .cart-item.flash { animation: flashGreen 0.5s ease; }
+
+    .ci-emoji {
+      font-size: 18px; text-align: center;
+      grid-row: 1 / 3; /* span both rows */
+      align-self: center;
+    }
+    .ci-info  { min-width: 0; grid-column: 2; grid-row: 1; }
+    .ci-nama  { font-family: var(--font-d); font-size: 13px; color: var(--dark);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2; }
+    .ci-sub   { font-size: 10px; font-weight: 700; color: var(--gray); margin-top: 1px; }
+
+    /* harga col: top-right */
+    .ci-harga-col { text-align: right; grid-column: 3; grid-row: 1; align-self: center; }
+    .ci-harga     { font-family: var(--font-d); font-size: 13px; color: var(--blue); white-space: nowrap; }
+    .ci-subtotal  { font-size: 10px; font-weight: 700; color: var(--gray); white-space: nowrap; }
+
+    /* qty: bottom row, spans col 2-3 */
+    .qty-ctrl {
+      display: flex; align-items: center; gap: 4px;
+      grid-column: 2 / 4; grid-row: 2;
+    }
+    .qty-btn {
+      width: 32px; height: 32px; border-radius: 8px;
+      border: 2px solid var(--dark); background: var(--gray-l);
+      font-family: var(--font-d); font-size: 16px; color: var(--dark);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      box-shadow: 2px 2px 0 var(--dark); transition: all 0.1s;
+      -webkit-tap-highlight-color: transparent; position: relative; flex-shrink: 0;
+    }
+    .qty-btn::after { content:''; position:absolute; inset:-5px; }
+    .qty-btn:active { transform:translate(1px,1px); box-shadow:0 0 0 var(--dark); }
+    .qty-btn.minus  { background: #FEE2E2; }
+    .qty-btn.minus:active { background: #fca5a5; }
+
+    .qty-input {
+      font-family: var(--font-d); font-size: 15px; color: var(--dark);
+      width: 46px; text-align: center;
+      background: var(--white); border: 2px solid #D1D5DB; border-radius: 8px;
+      padding: 4px 4px; outline: none;
+      -moz-appearance: textfield; transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .qty-input::-webkit-inner-spin-button,
+    .qty-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+    .qty-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(58,134,255,0.18); }
+    .qty-input.invalid { border-color: var(--red); background: #FEE2E2; }
+
+    /* total footer */
+    .cart-footer { border-top: 2.5px solid var(--dark); padding: 12px 16px 14px; background: #FFFEF5; }
+    .total-row { display: flex; justify-content: space-between; align-items: center; padding: 3px 0; }
+    .total-lbl { font-size: 12px; font-weight: 700; color: var(--gray); }
+    .total-val { font-size: 13px; font-weight: 800; color: var(--dark); }
+    .total-grand { border-top: 2px dashed #D1D5DB; margin-top: 8px; padding-top: 10px; }
+    .total-grand .total-lbl { font-family: var(--font-d); font-size: 15px; color: var(--dark); }
+    .total-grand .total-val { font-family: var(--font-d); font-size: clamp(20px, 5vw, 26px); color: var(--green-dk); }
+    .btn-reset {
+      width: 100%; margin-top: 10px;
+      background: var(--gray-l); color: var(--gray);
+      border: 2px solid #D1D5DB; border-radius: 12px;
+      padding: 11px; font-family: var(--font-d); font-size: 14px;
+      cursor: pointer; box-shadow: 3px 3px 0 #D1D5DB;
+      -webkit-tap-highlight-color: transparent; min-height: 46px;
+    }
+    .btn-reset:active { background: #FEE2E2; color: var(--red); border-color: var(--red); }
+
+    /* ── MOBILE BOTTOM NAV ── */
+    .bottom-nav {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0;
+      height: calc(60px + var(--safe-b));
+      padding-bottom: var(--safe-b);
+      background: var(--white); border-top: 3px solid var(--dark);
+      z-index: 100; box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+    }
+    .bottom-nav-inner { display: flex; height: 60px; }
+    .nav-btn {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 2px;
+      background: none; border: none; font-family: var(--font-b);
+      font-size: 10px; font-weight: 800; color: var(--gray);
+      cursor: pointer; transition: all 0.15s; position: relative;
+      padding: 6px 4px 4px; -webkit-tap-highlight-color: transparent;
+      letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .nav-btn .nav-icon { font-size: 22px; line-height: 1; transition: transform 0.2s; }
+    .nav-btn.active { color: var(--blue); }
+    .nav-btn.active .nav-icon { transform: scale(1.15); }
+    .nav-btn.active::before {
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 36px; height: 3px; background: var(--blue); border-radius: 0 0 4px 4px;
+    }
+    .nav-badge {
+      position: absolute; top: 4px; right: calc(50% - 24px);
+      background: var(--red); color: var(--white);
+      font-size: 10px; font-weight: 900; min-width: 17px; height: 17px;
+      border-radius: 9px; padding: 0 3px;
+      display: none; align-items: center; justify-content: center;
+      border: 2px solid var(--white);
+    }
+    .nav-badge.show { display: flex; animation: popIn 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+
+    /* ── MOBILE (< 820px) ── */
+    @media (max-width: 819px) {
+      .bottom-nav { display: block; }
+      body { padding-bottom: calc(60px + var(--safe-b) + 10px); }
+      .col-left, .col-right { width: 100%; }
+      .col-left.mob-hidden, .col-right.mob-hidden { display: none; }
+      .inline-mode-toggle { display: none !important; }
+    }
+
+    /* ── EXTRA SMALL (≤ 500px) ── */
+    @media (max-width: 500px) {
+      /* Header: shrink padding, hide subtitle on very small */
+      header { padding: 10px 10px 0; }
+      .header-banner { padding: 11px 12px 10px; gap: 9px; border-radius: 16px 16px 0 0; }
+      .hdr-emoji { font-size: 26px; }
+      .store-title { font-size: 15px; }
+      .store-subtitle { display: none; }
+      .mode-pill-btn { font-size: 10px; padding: 4px 8px; gap: 3px; }
+
+      /* Main layout padding */
+      .main-layout { padding: 10px 10px 0; gap: 12px; }
+
+      /* Card internals */
+      .scan-mode-bar { padding: 9px 12px 8px; }
+      .scan-mode-label { font-size: 12px; }
+
+      /* Scan visual shorter on tiny screen */
+      .scan-visual { height: 62px; margin-bottom: 10px; }
+      .scan-ready-txt { font-size: 9px; }
+
+      .scanner-body { padding: 10px 12px 12px; }
+
+      /* Input + button row: stack if < 360px handled below */
+      .input-row { gap: 6px; }
+      .kode-input { padding: 12px 12px; font-size: max(16px, 1em); border-radius: 12px; }
+      .kode-input::placeholder { font-size: 11px; }
+      .btn-tambah { padding: 12px 12px; font-size: 13px; border-radius: 12px; min-width: 72px; }
+
+      .hint-text { font-size: 10px; margin-top: 7px; }
+
+      /* Toasts */
+      .last-scan-toast, .error-toast { margin: 0 12px 10px; padding: 9px 11px; gap: 7px; border-radius: 12px; }
+      .lst-emoji, .et-emoji { font-size: 18px; }
+      .lst-nama { font-size: 12px; }
+      .lst-harga { font-size: 10px; }
+      .lst-qty-badge { font-size: 11px; padding: 2px 8px; }
+
+      /* Keranjang */
+      .keranjang-header { padding: 11px 14px; }
+      .keranjang-title  { font-size: 15px; }
+      .k-count          { font-size: 12px; padding: 1px 7px; }
+      .btn-clear-k      { font-size: 11px; padding: 4px 9px; }
+
+      /* Cart items: keep grid but tighter */
+      .cart-item { padding: 9px 12px; gap: 5px 7px; }
+      .ci-emoji  { font-size: 17px; }
+      .ci-nama   { font-size: 12px; }
+      .ci-sub    { font-size: 9px; }
+      .ci-harga  { font-size: 12px; }
+      .ci-subtotal { font-size: 9px; }
+
+      .qty-btn   { width: 30px; height: 30px; font-size: 15px; }
+      .qty-input { width: 42px; font-size: 14px; padding: 3px 3px; }
+
+      /* Footer totals */
+      .cart-footer { padding: 11px 14px 13px; }
+      .total-lbl   { font-size: 11px; }
+      .total-val   { font-size: 12px; }
+      .total-grand .total-lbl { font-size: 14px; }
+      .total-grand .total-val { font-size: 20px; }
+      .btn-reset   { font-size: 13px; padding: 10px; }
+
+      /* Bottom nav */
+      .bottom-nav-inner { height: 56px; }
+      .nav-btn { font-size: 9px; }
+      .nav-btn .nav-icon { font-size: 20px; }
+    }
+
+    /* ── VERY SMALL (≤ 360px) — stack input + button ── */
+    @media (max-width: 360px) {
+      .input-row { flex-direction: column; }
+      .btn-tambah { width: 100%; min-width: unset; }
+      .store-title { font-size: 14px; }
+    }
+
+    /* ── DESKTOP ── */
+    @media (min-width: 820px) {
+      .col-left.mob-hidden, .col-right.mob-hidden { display: block !important; }
+      .mode-pill { display: none !important; }
+    }
+
+    @media (min-width: 820px) and (hover: hover) {
+      .btn-tambah:hover  { transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--dark); }
+      .qty-btn:hover     { background:var(--yellow); transform:translate(-1px,-1px); }
+      .qty-btn.minus:hover { background:var(--red); color:var(--white); }
+    }
+
+    footer { width:100%; max-width:1100px; padding: 10px 14px 0; position:relative; z-index:10; font-size:11px; font-weight:700; color:var(--gray); text-align:center; }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="header-banner">
+    <span class="hdr-emoji">👑</span>
+    <div class="hdr-text">
+      <div class="store-title">Cek Harga Mainan</div>
+      <div class="store-subtitle">Scan · Cek Harga · Hitung Belanja</div>
+    </div>
+    <div class="mode-pill" id="headerModePill">
+      <button class="mode-pill-btn active" id="hdrBtnScan"   onclick="setMode('scan')">📷 Scan</button>
+      <button class="mode-pill-btn"        id="hdrBtnManual" onclick="setMode('manual')">⌨️ Manual</button>
+    </div>
+  </div>
+  <div class="color-strip">
+    <span class="cs1"></span><span class="cs2"></span><span class="cs3"></span>
+    <span class="cs4"></span><span class="cs5"></span><span class="cs6"></span>
+    <span class="cs7"></span>
+  </div>
+</header>
+
+<!-- ── MAIN ── -->
+<div class="main-layout">
+
+  <div class="col-left" id="colLeft">
+    <div class="card">
+      <div class="scan-mode-bar">
+        <div class="scan-mode-label">
+          <span class="scan-mode-dot" id="modeDot"></span>
+          <span id="modeLabel">Mode Scan Aktif</span>
+        </div>
+        <div class="inline-mode-toggle" id="desktopModeToggle">
+          <button class="imt-btn active" id="deskBtnScan"   onclick="setMode('scan')">📷 Scan</button>
+          <button class="imt-btn"        id="deskBtnManual" onclick="setMode('manual')">⌨️ Manual</button>
+        </div>
+      </div>
+
+      <div class="scanner-body">
+        <div class="scan-visual" id="scanVisual">
+          <div class="barcode-svg" id="barcodeSvg"></div>
+          <div class="scan-ready-txt">SIAP SCAN BARCODE</div>
+          <div class="scan-line"></div>
+          <div class="scan-corner sc-tl"></div>
+          <div class="scan-corner sc-tr"></div>
+          <div class="scan-corner sc-bl"></div>
+          <div class="scan-corner sc-br"></div>
+        </div>
+
+        <div class="input-row">
+          <input
+            type="text" id="kodeInput" class="kode-input"
+            placeholder="Arahkan scanner ke sini..."
+            autocomplete="off" autocorrect="off"
+            autocapitalize="characters" inputmode="text"
+          />
+          <button class="btn-tambah" id="btnTambah" onclick="submitManual()" style="display:none">
+            ➕ Tambah
+          </button>
+        </div>
+        <div class="hint-text" id="hintText">📷 Klik kolom input lalu arahkan scanner barcode</div>
+      </div>
+
+      <div class="last-scan-toast" id="lastScanToast">
+        <div class="lst-emoji" id="lstEmoji">🎁</div>
+        <div class="lst-info">
+          <div class="lst-nama" id="lstNama">—</div>
+          <div class="lst-harga" id="lstHarga">—</div>
+        </div>
+        <div class="lst-qty-badge" id="lstQtyBadge">×1</div>
+      </div>
+
+      <div class="error-toast" id="errorToast">
+        <div class="et-emoji">❌</div>
+        <div class="et-msg" id="errorMsg">Barang tidak ditemukan</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-right mob-hidden" id="colRight">
+    <div class="card">
+      <div class="keranjang-header">
+        <div class="keranjang-title">
+          🛒 Keranjang
+          <span class="k-count" id="kCount">0</span>
+        </div>
+        <button class="btn-clear-k" onclick="clearCart()">🗑️ Reset</button>
+      </div>
+      <div id="cartBody"></div>
+      <div class="cart-footer" id="cartFooter" style="display:none">
+        <div class="total-row">
+          <span class="total-lbl">Total Item</span>
+          <span class="total-val" id="totalItem">0</span>
+        </div>
+        <div class="total-row total-grand">
+          <span class="total-lbl">Total Belanja</span>
+          <span class="total-val" id="grandTotal">Rp 0</span>
+        </div>
+        <button class="btn-reset" onclick="clearCart()">🔄 Kosongkan Keranjang</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>👑 Sukses Crown Toys &nbsp;·&nbsp; v3.0</footer>
+
+<nav class="bottom-nav">
+  <div class="bottom-nav-inner">
+    <button class="nav-btn active" id="navScan" onclick="mobileTab('scan')">
+      <span class="nav-icon">🔍</span>Scanner
+    </button>
+    <button class="nav-btn" id="navCart" onclick="mobileTab('cart')">
+      <span class="nav-icon">🛒</span>Keranjang
+      <span class="nav-badge" id="navBadge">0</span>
+    </button>
+  </div>
+</nav>
+
+<script>
+const kategoriEmoji = {
+  'MOTOR':'🏍️','MOBIL':'🚗','ROBOT':'🤖','BONEKA':'🪆',
+  'PUZZLE':'🧩','ACTION':'⚔️','BAYI':'🍼','EDUKASI':'📚',
+};
+function getEmoji(k) {
+  const key = (k||'').toUpperCase();
+  for (const [m,v] of Object.entries(kategoriEmoji)) if (key.includes(m)) return v;
+  return '🎁';
+}
+function formatRp(n) {
+  return 'Rp\u00A0' + new Intl.NumberFormat('id-ID').format(n);
+}
+
+let cart=[], scanMode='scan', debounce=null, toastTimer=null;
+function cartTotal()     { return cart.reduce((s,i)=>s+i.harga*i.qty,0); }
+function cartItemCount() { return cart.reduce((s,i)=>s+i.qty,0); }
+
+function setMode(mode) {
+  scanMode = mode;
+  const inp       = document.getElementById('kodeInput');
+  const scanVis   = document.getElementById('scanVisual');
+  const btnTambah = document.getElementById('btnTambah');
+  const modeDot   = document.getElementById('modeDot');
+  const modeLabel = document.getElementById('modeLabel');
+  const hintText  = document.getElementById('hintText');
+
+  ['hdrBtnScan','deskBtnScan'].forEach(id => document.getElementById(id).classList.toggle('active', mode==='scan'));
+  ['hdrBtnManual','deskBtnManual'].forEach(id => document.getElementById(id).classList.toggle('active', mode==='manual'));
+
+  if (mode==='scan') {
+    scanVis.classList.remove('hidden');
+    btnTambah.style.display='none';
+    inp.classList.remove('manual-mode');
+    inp.placeholder='Arahkan scanner ke sini...';
+    modeDot.classList.remove('manual');
+    modeLabel.textContent='Mode Scan Aktif';
+    hintText.textContent='📷 Klik kolom input lalu arahkan scanner barcode';
+  } else {
+    scanVis.classList.add('hidden');
+    btnTambah.style.display='';
+    inp.classList.add('manual-mode');
+    inp.placeholder='Ketik kode barang...';
+    modeDot.classList.add('manual');
+    modeLabel.textContent='Mode Manual Aktif';
+    hintText.textContent='⌨️ Ketik kode barang lalu tekan Tambah atau Enter';
+  }
+  inp.value=''; inp.focus(); hideToasts();
+}
+
+const inp = document.getElementById('kodeInput');
+inp.addEventListener('keydown', function(e) {
+  if (e.key==='Enter') { clearTimeout(debounce); processKode(this.value.trim().toUpperCase()); }
+});
+inp.addEventListener('input', function() {
+  if (scanMode!=='scan') return;
+  clearTimeout(debounce);
+  const val=this.value.trim();
+  if (val.length>=3) debounce=setTimeout(()=>processKode(val.toUpperCase()),280);
+});
+function submitManual() {
+  const val=inp.value.trim().toUpperCase();
+  if (!val) { inp.focus(); return; }
+  processKode(val);
+}
+
+async function processKode(kode) {
+  if (!kode) return;
+  hideToasts();
+  try {
+    const res=await fetch(`/api/cek-harga/${encodeURIComponent(kode)}`);
+    const json=await res.json();
+    if (json.success) { addToCartAuto(json.data); showSuccessToast(json.data); }
+    else showErrorToast(json.message||`Kode "${kode}" tidak ditemukan`);
+  } catch { showErrorToast('Tidak dapat terhubung ke server'); }
+  setTimeout(()=>{ inp.value=''; inp.focus(); }, scanMode==='scan'?60:0);
+}
+
+function addToCartAuto(data) {
+  const ex=cart.find(i=>i.kode===data.kode);
+  ex ? ex.qty++ : cart.push({kode:data.kode,nama:data.barang,kategori:data.kategori,harga:data.harga_jual,isi:data.isi,qty:1});
+  updateBadge(); renderCart(data.kode);
+}
+function changeQty(kode,delta) {
+  const item=cart.find(i=>i.kode===kode); if (!item) return;
+  const nq=item.qty+delta;
+  if (nq<=0) { cart=cart.filter(i=>i.kode!==kode); updateBadge(); renderCart(); return; }
+  item.qty=nq; updateBadge(); patchCartRow(kode); updateTotals();
+}
+function setQty(el) {
+  const kode=el.dataset.kode;
+  const item=cart.find(i=>i.kode===kode); if (!item) return;
+  const raw=parseInt(el.value,10);
+  if (isNaN(raw)||raw<1) {
+    el.classList.add('invalid'); el.value=item.qty;
+    setTimeout(()=>el.classList.remove('invalid'),800); return;
+  }
+  item.qty=raw; el.classList.remove('invalid'); updateBadge(); patchCartRow(kode); updateTotals();
+}
+function patchCartRow(kode) {
+  const item=cart.find(i=>i.kode===kode);
+  const row=document.getElementById('ci-'+kode.replace(/[^a-zA-Z0-9]/g,''));
+  if (!row||!item) return;
+  const qi=row.querySelector('.qty-input');
+  if (qi&&parseInt(qi.value)!==item.qty) qi.value=item.qty;
+  row.querySelector('.ci-harga').textContent=formatRp(item.harga*item.qty);
+  row.querySelector('.ci-subtotal').textContent=item.qty+'×'+formatRp(item.harga);
+  row.classList.remove('flash'); void row.offsetWidth; row.classList.add('flash');
+}
+function updateTotals() {
+  document.getElementById('totalItem').textContent=cartItemCount()+' item';
+  document.getElementById('grandTotal').textContent=formatRp(cartTotal());
+  document.getElementById('kCount').textContent=cartItemCount();
+}
+function clearCart() { cart=[]; updateBadge(); renderCart(); }
+function updateBadge() {
+  const n=cartItemCount();
+  const b=document.getElementById('navBadge');
+  b.textContent=n; b.classList.toggle('show',n>0);
+  document.getElementById('kCount').textContent=n;
+}
+function renderCart(flashKode) {
+  const body=document.getElementById('cartBody');
+  const footer=document.getElementById('cartFooter');
+  if (!cart.length) {
+    body.innerHTML=`<div class="cart-empty">
+      <div class="cart-empty-emoji">🛒</div>
+      <div class="cart-empty-text">Keranjang Kosong</div>
+      <div class="cart-empty-sub">Scan atau ketik kode barang untuk menambah</div>
+    </div>`;
+    footer.style.display='none'; return;
+  }
+  footer.style.display='block';
+  body.innerHTML=`<div class="cart-list">${cart.map(item=>`
+    <div class="cart-item" id="ci-${item.kode.replace(/[^a-zA-Z0-9]/g,'')}">
+      <div class="ci-emoji">${getEmoji(item.kategori)}</div>
+      <div class="ci-info">
+        <div class="ci-nama">${item.nama}</div>
+        <div class="ci-sub">${formatRp(item.harga)} / ${item.isi}</div>
+      </div>
+      <div class="ci-harga-col">
+        <div class="ci-harga">${formatRp(item.harga*item.qty)}</div>
+        <div class="ci-subtotal">${item.qty}×${formatRp(item.harga)}</div>
+      </div>
+      <div class="qty-ctrl">
+        <button class="qty-btn minus" onclick="changeQty('${item.kode}',-1)">−</button>
+        <input class="qty-input" type="number" min="1" value="${item.qty}" data-kode="${item.kode}" onchange="setQty(this)" onfocus="this.select()">
+        <button class="qty-btn" onclick="changeQty('${item.kode}',1)">+</button>
+      </div>
+    </div>`).join('')}</div>`;
+  if (flashKode) {
+    const row=document.getElementById('ci-'+flashKode.replace(/[^a-zA-Z0-9]/g,''));
+    if (row) { row.classList.remove('flash'); void row.offsetWidth; row.classList.add('flash'); }
+  }
+  updateTotals();
+}
+
+function showSuccessToast(data) {
+  clearTimeout(toastTimer);
+  const ex=cart.find(i=>i.kode===data.kode);
+  document.getElementById('lstEmoji').textContent=getEmoji(data.kategori);
+  document.getElementById('lstNama').textContent=data.barang;
+  document.getElementById('lstHarga').textContent=formatRp(data.harga_jual)+' / '+data.isi;
+  document.getElementById('lstQtyBadge').textContent='×'+(ex?ex.qty:1);
+  document.getElementById('lastScanToast').classList.add('show');
+  document.getElementById('errorToast').classList.remove('show');
+  if (scanMode==='scan') toastTimer=setTimeout(hideToasts,4000);
+}
+function showErrorToast(msg) {
+  clearTimeout(toastTimer);
+  document.getElementById('errorMsg').textContent=msg;
+  document.getElementById('errorToast').classList.add('show');
+  document.getElementById('lastScanToast').classList.remove('show');
+  toastTimer=setTimeout(hideToasts,4000);
+}
+function hideToasts() {
+  document.getElementById('lastScanToast').classList.remove('show');
+  document.getElementById('errorToast').classList.remove('show');
+}
+
+function mobileTab(tab) {
+  document.getElementById('navScan').classList.toggle('active',tab==='scan');
+  document.getElementById('navCart').classList.toggle('active',tab==='cart');
+  if (tab==='scan') {
+    document.getElementById('colLeft').classList.remove('mob-hidden');
+    document.getElementById('colRight').classList.add('mob-hidden');
+    setTimeout(()=>inp.focus(),80);
+  } else {
+    document.getElementById('colLeft').classList.add('mob-hidden');
+    document.getElementById('colRight').classList.remove('mob-hidden');
+  }
+}
+
+/* Generate barcode bars */
+(function(){
+  const el=document.getElementById('barcodeSvg'); if(!el) return;
+  const pattern=[2,1,3,1,1,2,4,1,2,1,1,3,2,1,1,2,3,1,2,1,4,1,1,2,3,1,2,1,1,3,1,2,4,1,1,2,1,3,2,1,3,1,2,1,1,4,2,1,3,1,1,2,2,1,3,1,4,1,1,2];
+  const heights=[46,30,42,34,46,26,42,34,30,46,26,42,34,30,46,26,42,34,46,30,42,26,34,46,30,42,34,26,46,30,42,34,46,26,30,42,34,46,26,42,34,30,46,26,42,34,30,46,30,42,34,46,26,42,34,30,46,42,26,34];
+  pattern.forEach((w,i)=>{
+    const d=document.createElement('div');
+    if(i%2===0){d.className='bc-bar';d.style.width=w+'px';d.style.height=(heights[i]||38)+'px';}
+    else{d.style.width=w+'px';d.style.flexShrink='0';}
+    el.appendChild(d);
+  });
+})();
+
+renderCart();
+setMode('scan');
+</script>
+</body>
+</html>
