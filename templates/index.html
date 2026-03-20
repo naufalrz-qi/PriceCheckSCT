@@ -783,18 +783,18 @@ const RECENT_MAX=8; let recentScans=[], dispTimer=null;
 
 /* ══════════════════════════════════════
    GLOBAL SCANNER
-   Deteksi hardware scanner: karakter datang < 50ms antar keystroke
-   Bekerja tanpa perlu fokus ke input manapun
+   Di mode scan: SEMUA karakter printable di-buffer tanpa cek kecepatan.
+   Alasan: kodeInput sudah readOnly, tidak ada input yang perlu terima
+   ketikan user. Karakter pertama scanner tidak boleh dilewatkan.
+   Timeout 200ms setelah karakter terakhir → proses buffer.
 ══════════════════════════════════════ */
-let gBuf='', gTimer=null, gLast=0;
-const SCAN_SPEED=50, SCAN_TIMEOUT=200;
+let gBuf='', gTimer=null;
+const SCAN_TIMEOUT=200;
 
 document.addEventListener('keydown', e=>{
   if(scanMode !== 'scan') return;
   if(currentPage !== 'scan') return;
   if(e.ctrlKey||e.metaKey||e.altKey) return;
-
-  const now=Date.now(), dt=now-gLast; gLast=now;
 
   if(e.key === 'Enter'){
     clearTimeout(gTimer);
@@ -802,15 +802,18 @@ document.addEventListener('keydown', e=>{
     if(buf.length >= 3){ e.preventDefault(); processKode(buf); }
     return;
   }
+
   if(e.key.length === 1){
-    if(dt < SCAN_SPEED || gBuf.length > 0){
-      gBuf += e.key; e.preventDefault();
-      clearTimeout(gTimer);
-      gTimer = setTimeout(()=>{
-        const buf=gBuf.trim().toUpperCase(); gBuf='';
-        if(buf.length >= 3) processKode(buf);
-      }, SCAN_TIMEOUT);
-    }
+    // Selalu buffer — tidak ada cek kecepatan
+    // Ini memastikan huruf pertama barcode tidak hilang
+    gBuf += e.key;
+    e.preventDefault(); // cegah masuk ke elemen manapun
+
+    clearTimeout(gTimer);
+    gTimer = setTimeout(()=>{
+      const buf=gBuf.trim().toUpperCase(); gBuf='';
+      if(buf.length >= 3) processKode(buf);
+    }, SCAN_TIMEOUT);
   }
 });
 
@@ -906,6 +909,8 @@ function setMode(mode){
     hint.textContent='⌨️ Ketik kode barang lalu tekan Enter atau →';
     chip.classList.add('off'); dot.classList.add('off');
     txt.textContent='Mode Manual'; txt.style.color='var(--gray)';
+    // Bersihkan buffer scanner yang mungkin masih ada
+    gBuf=''; clearTimeout(gTimer);
     kodeInput.focus();
   }
   resetScanDisplay();
